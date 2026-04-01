@@ -1,0 +1,336 @@
+METODO TRIFASE — Manuale di Metodologia
+dell'Allenamento per il Triathlon
+Documento di Riferimento Tecnico per Coaching Digitale
+Redatto da Coach Certificato FITRI — Allenatore di 1° e 2° Livello — 15 anni di esperienza
+nell'alto livello
+
+
+
+
+1. Identità del Metodo
+Nome e Filosofia
+Il Metodo TRIFASE nasce dall'osservazione sistematica di oltre quindici anni di lavoro sul
+campo con atleti di ogni livello, dai neofiti che si avvicinano alla distanza Sprint fino agli agonisti
+impegnati nella distanza Full Ironman. Il nome richiama i tre pilastri del triathlon — nuoto,
+ciclismo, corsa — ma anche la struttura ciclica e progressiva dell'allenamento: ogni fase ha
+un'identità precisa, un obiettivo fisiologico dichiarato e un metodo di verifica misurabile.
+
+La filosofia di fondo è sintetizzabile in una sola frase: adattamento controllato, progressione
+sostenibile, prestazione consapevole. Rifiuta categoricamente l'approccio "più è meglio": il
+volume fine a sé stesso, senza qualità e senza recupero, produce atleti stanchi, non atleti forti.
+Il triatleta moderno deve imparare a leggere il proprio corpo come un sistema complesso, in cui
+sonno, alimentazione, stress lavorativo e stimolo allenante concorrono — in positivo o in
+negativo — alla risposta adattativa.
+
+Il Metodo TRIFASE si fonda su tre principi scientificamente validati:
+
+   Polarizzazione del carico: circa l'80% del volume settimanale si svolge a bassa intensità
+    (Zone 1-2), il restante 20% a intensità elevata (Zone 4-5), minimizzando il cosiddetto "fango
+    di mezzo" (Zona 3 cronica), che produce fatica accumulata senza adattamenti
+    proporzionali.
+   Periodizzazione a blocchi: la stagione è divisa in macroblocchi tematici (Blocco Aerobico,
+    Blocco di Soglia, Blocco di Picco), ognuno della durata di 3-5 settimane, con obiettivi
+    fisiologici specifici e progressione lineare del carico.
+   Individualizzazione assoluta: non esiste un piano uguale per due atleti. I parametri di
+    ingresso (FTP, soglia di nuoto, VDOT, HR a riposo, qualità del sonno) determinano un
+    profilo unico da cui derivano tutte le prescrizioni di intensità e volume.
+
+
+Profilo dell'Atleta Ideale e Livelli Gestiti
+Il Metodo TRIFASE è progettato per essere scalabile su tre livelli:
+
+   Beginner (livello 1): atleta con meno di 2 anni di esperienza nel triathlon, prevalentemente
+    orientato alle distanze Sprint e Olympic. Priorità assoluta: tecnica nelle tre discipline,
+    costruzione aerobica di base, gestione delle transizioni (T1 e T2).
+   Intermediate (livello 2): atleta con 2-5 anni di esperienza, capace di completare distanze
+    Olympic e 70.3. Sa utilizzare un cardiofrequenzimetro, ha già effettuato test di soglia.
+    Priorità: ottimizzazione delle zone di intensità, gestione del carico trifase, nutrizione
+    racespecific.
+
+   Advanced (livello 3): atleta con oltre 5 anni di pratica agonistica, con obiettivi cronometrici
+    precisi su distanze 70.3 e Full. Utilizza misuratori di potenza in bici, cronometro GPS in
+    corsa, analisi SWOLF in nuoto. Priorità: fine-tuning della preparazione specifica, gestione
+    psicologica della gara, tapering individualizzato.
+
+
+
+
+2. Framework di Valutazione Iniziale
+Anamnesi Sportiva e Obiettivi
+Prima di prescrivere qualsiasi piano, è necessario un colloquio strutturato con l'atleta. Le
+domande fondamentali sono:
+
+   Quante ore settimanali riesci realisticamente a dedicare all'allenamento (includendo
+    spostamenti e recupero)?
+    Quali sono stati i tuoi tre allenamenti più intensi delle ultime 4 settimane?
+    Hai avuto infortuni o interruzioni superiori a 2 settimane negli ultimi 12 mesi? Se sì, di che
+ tipo?
+   Qual è il tuo obiettivo primario della stagione (terminare una gara, migliorare un tempo,
+    qualificarsi per un evento)?
+   Come descriveresti la qualità media del tuo sonno (scala 1-10) e il livello di stress
+    lavorativo/personale?
+   Utilizzi dispositivi di monitoraggio (GPS, potenziomentro, cardiofrequenzimetro)?
+
+Queste informazioni determinano il punto di partenza reale dell'atleta, non quello che lui ritiene
+di avere. La discrepanza tra percezione soggettiva e dati oggettivi è una delle prime cose da
+imparare a gestire nel tempo.
+
+
+Parametri Fisiologici e Test di Ingresso
+Ciclismo — FTP Test (Functional Threshold Power)
+Protocollo standard Coggan modificato: dopo 10 minuti di riscaldamento progressivo e 2 sprint
+di attivazione da 30 secondi, l'atleta svolge uno sforzo massimale di 20 minuti su rulli o
+cicloergometro. L'FTP si calcola come il 95% della potenza media sostenuta nei 20 minuti. Per
+chi non dispone di misuratore di potenza, si stima tramite FC al 100% della FCMAX sostenuta
+nel test. L'FTP è il parametro cardine per il calcolo delle zone in bici.
+
+Nuoto — Soglia CSS (Critical Swim Speed)
+Il test prevede due prove cronometrate: 400 metri e 200 metri, con 20 minuti di recupero
+passivo tra le due. La CSS si calcola come: CSS (m/s) = (400m − 200m) / (T400 − T200), dove
+T sono i tempi in secondi. La CSS corrisponde alla velocità di soglia aerobica in acqua e viene
+utilizzata per calibrare il ritmo negli allenamenti di serie lunghe.
+
+Corsa — VDOT e Test dei 3000 metri
+Il VDOT (indice di Daniels) si ricava dal tempo su 3000 metri percorsi in condizioni standard
+(pista, clima temperato). Il test è preceduto da 15 minuti di riscaldamento, includendo 4×100m
+progressivi. Dal VDOT si derivano i paci target per ogni zona di corsa: Easy, Marathon Pace,
+Threshold, Interval, Repetition. Per atleti Beginner che non possono reggere un test massimale
+da 3000m, si utilizza il test dei 12 minuti Cooper come alternativa.
+
+Frequenza Cardiaca a Riposo (HRrest)
+Misurata per 3 mattine consecutive appena svegli, prima di alzarsi dal letto. La media di questi
+valori costituisce il baseline dell'atleta. Una variazione di +7 bpm o più rispetto al baseline è un
+segnale di allarme per sovrallenamento o inizio di patologia.
+3. Protocolli di Allenamento
+Zone di Intensità — Sistema Unificato a 5 Zone
+Per semplicità operativa e coerenza tra le tre discipline, si adotta un sistema a 5 zone:
+
+ Zona     Nome               %FTP          %FC         Passo relativo          Sensazione
+                             (bici)        Max         (corsa)
+
+ Z1       Recupero           <55%          <68%        Molto lenta             Conversazione facile
+          Attivo
+
+ Z2       Aerobica Base      56–75%        69–83%      Easy/Lunga              Respiro regolare
+
+          Soglia
+ Z3                          76–90%        84–91%      Marathon Pace           Sforzo avvertibile
+          Aerobica
+ Z4       Soglia             91–105%       92–97%      Threshold               Scomodo ma
+          Anaerobica                                                           sostenibile
+
+ Z5       Massima            >105%         >97%        Interval/Rep            Insostenibile a lungo
+          Intensità
+La Z3 va usata con parsimonia: è la zona che produce più stanchezza relativa al ritorno
+adattativo. L'errore più comune negli atleti che si allenano da soli è trascorrere troppo tempo in
+questa zona "di mezzo": troppe sessioni facili troppo veloci, troppe veloci troppo lente.
+
+Struttura della Settimana Tipo per Fase
+Fase Base (8–12 settimane)
+Obiettivo: costruire il motore aerobico. Il volume è progressivo (+10% ogni settimana, con
+scarico ogni 4ª settimana). Distribuzione tipica: 80-85% in Z1-Z2, massimo 15% in Z4-Z5, Z3
+quasi assente. Si introduce tecnica sistematica in tutte e tre le discipline. Le sessioni brick sono
+limitate a 1 per settimana con transizione corta (bici + corsa 15').
+
+Esempio settimana Base — Intermediate:
+
+    Lunedì: Nuoto tecnico 2.000m Z1-Z2 + esercizi di tecnica bracciata
+    Martedì: Bici 75' Z2 / Corsa 35' Z1 (recupero attivo)
+    Mercoledì: Riposo o mobilità 30'
+    Giovedì: Nuoto 2.500m con serie CSS + Corsa 45' Z2
+    Venerdì: Bici 90' Z2 con progressione finale 15' Z3
+    Sabato: Corsa lunga 60-75' Z2
+    Domenica: Riposo
+
+Fase di Costruzione (6–8 settimane)
+Si intensifica il lavoro specifico. Compaiono serie di soglia in bici (es. 2×20' a Z4), ripetute in
+pista in corsa (es. 6×1000m a ritmo Threshold), lavoro di serie lunghe in nuoto con paci CSS. Il
+volume complessivo rimane stabile o cresce lievemente, ma la densità qualitativa aumenta. Le
+sessioni brick diventano 2 per settimana, con durate crescenti (bici 90'+corsa 25').
+
+Fase di Picco (3–4 settimane)
+Volume ridotto del 10-15% rispetto al massimo, intensità al picco. Si simulano le condizioni di
+gara: brick completi a ritmo gara, transizioni cronometrate, alimentazione race-specific durante
+l'allenamento. In questa fase l'atleta deve sentirsi "graffiante": l'eventuale fatica residua è
+normale e si risolve nel tapering.
+Tapering (7–14 giorni prima della gara)
+Riduzione progressiva del volume del 40-60% mantenendo la frequenza delle sedute e alcune
+brevi scariche di intensità (2×5' a Z5 in bici, 4×200m veloci in nuoto, 4×400m al ritmo gara in
+corsa). Il tapering troppo lungo spegne la forma; troppo corto non permette il recupero
+completo. Per la Sprint, 7 giorni sono sufficienti; per il Full Ironman, servono 14-18 giorni.
+
+
+Volumi Settimanali Indicativi
+ Livello         Nuoto (km)     Bici (km)      Corsa (km)   Ore totali
+ Beginner        3–5            60–100         20–30              6–9
+ Intermediate    8–14           150–220        35–50             10–14
+ Advanced        16–25          250–350        55–80          15–20+
+Brick Sessions — Filosofia e Protocolli
+Le sessioni brick (bici + corsa) sono lo strumento più specifico del triatleta e vanno
+programmate con precisione. L'obiettivo non è solo condizionare le gambe alla transizione, ma
+allenare il sistema neuromuscolare a reclutare in modo diverso i muscoli della corsa dopo lo
+sforzo ciclico. Le prime 1500m di corsa dopo la bici sono le più critiche: la tendenza è partire
+troppo veloci rispetto al passo sostenibile.
+
+Esistono tre tipologie di brick nel Metodo TRIFASE:
+
+   Brick di adattamento: bici lunga Z2 + corsa breve 10-15' a passo Easy. Usato in fase Base
+    per abituare l'atleta alla sensazione di "gambe di legno".
+   Brick di soglia: bici con blocchi Z4 + corsa 20-30' a ritmo Marathon Pace. Usato in fase
+    Costruzione.
+   Brick di simulazione gara: bici a ritmo gara sul percorso specifico + corsa 30-45' a ritmo
+    gara. Usato nelle ultime 3 settimane prima della competizione.
+
+
+
+
+4. Nutrizione e Recupero
+Macronutrienti nelle Fasi di Carico e Scarico
+La nutrizione nel triathlon segue la logica del carico di allenamento. In settimane di alto volume
+(>12 ore), i carboidrati devono rappresentare il 55-65% dell'apporto calorico totale, con
+particolare attenzione al rifornimento post-sessione nelle prime 30-45 minuti (finestra anabolica:
+1g di CHO/kg di peso corporeo + 0,3g di proteine/kg). In settimane di scarico o recupero, i
+carboidrati scendono al 45-50%, con un leggero aumento della quota proteica per supportare il
+rimodellamento muscolare.
+
+Le proteine devono essere distribuite uniformemente nei pasti: 4-5 assunzioni da 20-30g
+ciascuna sono più efficaci di una singola dose elevata. I grassi — preferibilmente insaturi (olio
+extravergine, avocado, pesce azzurro) — non devono mai scendere sotto il 20% dell'apporto
+calorico totale, pena la compromissione della produzione ormonale.
+
+
+Alimentazione in Gara per Distanza
+Sprint (45'–1h15')
+Alimentazione minima o nulla. Gel di carboidrati nei 15' pre-gara, un sorso d'acqua in bici se
+disponibile. La durata non giustifica una strategia nutrizionale complessa.
+Olympic (1h45'–2h30')
+Gel rapido o isotonica in bici (20-25g CHO ogni 40'), corsa senza integrazione a meno di
+condizioni di caldo estremo.
+
+70.3 (3h30'–6h)
+Strategia di 60-90g CHO/ora in bici (gel + maltodestrine + isotonica), 30-40g CHO/ora in corsa,
+attenzione all'apporto di sodio (500-700mg/ora in condizioni calde).
+
+Full Ironman (8h–17h)
+80-100g CHO/ora in bici nelle prime 4 ore (fase di accumulo), poi 60-70g/ora. In corsa: walk
+station ad ogni aid station, gel + cola + brodo nelle fasi finali. Il sodio diventa critico:
+7001000mg/ora. Errori alimentari nell'Ironman causano la maggior parte dei DNF (Did Not
+Finish) non traumatici.
+
+
+Recupero Attivo e Passivo
+Il recupero non è assenza di allenamento: è parte integrante del piano. Si distinguono due
+modalità:
+
+   Recupero attivo: sessioni leggere Z1 di 20-30 minuti (nuoto lento, bici pianeggiante, corsa
+    lenta), massaggio con foam roller, stretching dinamico. Attivano la circolazione senza
+    produrre stress aggiuntivo.
+   Recupero passivo: sonno (7-9 ore, la variabile più potente di tutto il processo adattativo),
+    bagni freddi/contrasto termico nelle 2 ore post-sessione intensa, meditazione o tecniche di
+    respirazione diaframmatica per abbassare la frequenza cardiaca a riposo.
+
+
+
+
+5. Monitoraggio Continuo
+Variabili Chiave da Raccogliere
+Nelle conversazioni periodiche con l'atleta, è utile estrarre sistematicamente le seguenti
+variabili e registrarle in forma progressiva per rilevare tendenze:
+
+   Ciclismo: watt medi normalizzati (NP) nelle sessioni chiave, IF (Intensity Factor = NP/FTP),
+    TSS (Training Stress Score) settimanale.
+   Nuoto: passo medio per 100m nelle serie, SWOLF (stroke + lunghezze per vasca),
+    frequenza bracciata.
+   Corsa: passo medio per km nelle sessioni Z2 e Z4, cadenza (ideale 170-180 passi/min),
+    potenza di corsa se disponibile.
+   Variabili sistemiche: FC a riposo mattutina, qualità del sonno (scala 1-10), stress percepito
+    (scala 1-10 RPE giornaliero), peso corporeo a digiuno, HRV (Heart Rate Variability) se
+    misurata.
+
+
+Segnali di Sovrallenamento e Protocollo di Risposta
+Il sovrallenamento è il rischio principale per l'atleta amatoriale ad alto impegno. I segnali da
+monitorare con attenzione sono:
+
+    FC a riposo aumentata di ≥7 bpm per 3 giorni consecutivi.
+    Sonno < 6 su 10 per più di 4 notti in una settimana.
+    Stagnazione o regressione delle prestazioni in sessioni sub-massimali (stessa FC, ritmo più
+ lento).
+   Umore irritabile o apatia verso l'allenamento (primo segnale soggettivo).
+
+   Indolenzimento muscolare persistente oltre 72 ore dopo una sessione.
+
+Il protocollo di risposta si articola in tre livelli:
+
+ 1. Giallo (1-2 segnali presenti): riduzione del volume del 20%, eliminazione di tutte le sessioni
+    Z4-Z5 per 5-7 giorni.
+ 2. Arancio (3-4 segnali): settimana completa di recupero attivo, solo Z1-Z2, nessuna sessione
+    brick, follow-up quotidiano.
+ 3. Rosso (5+ segnali o persistenza per 2 settimane): pausa completa 5-10 giorni,
+    consultazione medica sportiva, revisione strutturale del piano stagionale.
+
+
+Interpretazione dei Dati nel Tempo
+I dati hanno senso solo se letti in serie temporale, non come valori isolati. L'obiettivo è
+riconoscere i trend prima che diventino problemi. Un atleta che mostra FC a riposo stabile,
+sonno ≥7 su 10, progressione dei watt a Z2 e riduzione del passo a parità di sforzo è in perfetta
+finestra adattativa. Viceversa, un atleta che migliora i numeri ma dorme male e si sveglia
+stanco è un atleta che accumula debito fisiologico: migliora nel breve, peggiora nel medio. La
+correttezza del piano si misura sulla capacità di arrivare alla gara principale più freschi e più
+forti dell'allenamento più duro.
+
+
+
+
+6. Comunicazione e Psicologia dello Sport
+Tono e Stile Comunicativo
+Nel rapporto con gli atleti è consigliabile un registro "tecnico-empatico": preciso nei numeri,
+diretto nelle valutazioni, mai freddo nelle relazioni. L'atleta deve sentire che dietro al piano c'è
+qualcuno che conosce la sua storia, i suoi limiti e le sue aspirazioni. Da evitare il linguaggio da
+social media ("distruggi questo workout!") e il tono condiscendente. Utili frasi come "questa
+settimana ho visto che..." e "secondo me potresti..." che mantengono l'atleta protagonista del
+proprio processo.
+
+La chiarezza è rispetto: non dire mai "fai un po' di endurance". Meglio: "corri 55 minuti a Z2,
+passo target tra 5:40 e 5:55 al km, non uscire da questa finestra". La specificità della
+prescrizione riduce l'ansia dell'atleta e migliora la compliance.
+
+
+Gestione delle Flessioni Motivazionali e degli Infortuni Minori
+La flessione motivazionale è fisiologica, soprattutto nelle fasi di costruzione (settimane 5-8),
+quando la fatica è al massimo e la gara sembra ancora lontana. Quando un atleta segnala "non
+ho voglia di allenarmi", la prima reazione non deve essere spronarlo, ma comprendere il
+perché. Quasi sempre la causa è fisica (sonno insufficiente, sforzo eccessivo) e non
+psicologica. Se la causa è genuinamente psicologica, si utilizzano tecniche di frazionamento
+degli obiettivi: non "devi completare l'Ironman", ma "domani devi fare solo quei 45 minuti facili,
+nient'altro conta".
+
+Gli infortuni minori (tendinopatie lievi, sindrome della bandelletta, crampi ricorrenti) vanno gestiti
+con il principio del mantenimento modificato: mai fermarsi completamente a meno di
+indicazione medica, ma sostituire la disciplina problematica con un'alternativa compatibile. Se
+un atleta ha un problema all'achilleo, si sostituisce la corsa con nuoto a gambe (uso dei soli
+kick) e bici pianeggiante, mantenendo il carico cardiovascolare senza stress tendineo.
+Framework per il Debriefing Post-Gara
+Il debriefing post-competizione è uno degli strumenti più sottovalutati. Va condotto seguendo
+una struttura precisa entro 48-72 ore dalla gara:
+
+ 1. Dati oggettivi: confronto tra ritmi/watt pianificati e realizzati, split per frazione (nuoto, T1,
+    bici, T2, corsa), eventuali anomalie.
+ 2. Sensazioni soggettive: com'era l'energia in ogni frazione? Dove è arrivata la fatica? Come
+    si è sentito il cambio bici-corsa? Com'era la gestione mentale?
+ 3. Analisi degli errori: partenza troppo veloce in nuoto? Passo bici sopra soglia? Crisi nella
+    seconda metà della corsa?
+ 4. Punti di forza: cosa è andato meglio rispetto alle aspettative? Questo è il patrimonio da
+    difendere e sviluppare.
+ 5. Piano di azione: tre aggiustamenti concreti per la prossima preparazione, non dieci. La
+    specificità è tutto.
+
+Il debriefing chiude un ciclo e ne apre un altro. L'atleta che sa leggere la propria gara diventa,
+nel tempo, co-autore del proprio miglioramento — e questo è l'obiettivo più alto di qualsiasi
+processo di coaching di qualità.
+
+
+
+
+DISCLAIMER: Il presente documento è un esempio illustrativo generato da intelligenza artificiale, prodotto esclusivamente a scopo dimostrativo e di test del sistema MetaOpenCoach. Non costituisce una guida di allenamento certificata né sostituisce la valutazione medico-sportiva preventiva o il giudizio di un professionista qualificato. Gli autori del progetto MetaOpenCoach declinano ogni responsabilità per danni diretti, indiretti o consequenziali derivanti dall'uso, dall'uso improprio o dall'interpretazione erronea di questo documento o di applicazioni da esso generate, inclusi infortuni fisici, danni alla salute o danni a terzi. L'utilizzo implica la piena accettazione di queste condizioni. MetaOpenCoach | Esempio Generato da AI | Versione 1.0 — 2026
+

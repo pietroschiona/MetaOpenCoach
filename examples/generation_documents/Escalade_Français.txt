@@ -1,0 +1,305 @@
+﻿MÉTHODE VERTICAL INTELLIGENCE
+Manuel e Méthodologie d'Entraînement en Escalade 
+Sportive
+Rédigé par un entraîneur certifié FFME — Usage interne coach digital 
+ 
+1. IDENTITÉ DE LA MÉTHODE ET PHILOSOPHIED'ENTRAÎNEMENT 
+1.1 Nom et principes fondamentaux 
+La méthode Vertical Intelligence repose sur une conviction centrale : la performance en 
+escalade est le produit d'une interaction complexe entre le corps, l'esprit et le mouvement. 
+Contrairement aux approches réductrices qui privilégient uniquement la force des doigts ou la 
+condition physique générale, cette méthode intègre systématiquement quatre piliers 
+indissociables — la technique gestuelle, la force spécifique, la lecture cognitive et la 
+récupération structurée — dans chaque cycle d'entraînement, quelle que soit la discipline 
+pratiquée. 
+Le principe directeur est celui de la spécificité progressive : chaque exercice proposé doit 
+avoir une valeur de transfert identifiable vers la performance en falaise ou en compétition. Cela 
+signifie qu'un exercice de renforcement des doigts au hangboard n'a de sens que s'il est 
+dimensionné pour le type de prise, la plage d'intensité et la durée de contact rencontrés dans 
+les voies-projets de l'athlète. On ne s'entraîne pas dans le vide ; on s'entraîne pour grimper 
+mieux sur un objectif défini. 
+Le deuxième principe fondamental est la gestion intelligente de la fatigue tendineuse. 
+L'escalade sollicite de façon asymétrique les structures passives (poulies A2, A4, tendons 
+fléchisseurs), dont la capacité d'adaptation est significativement plus lente que celle du 
+système neuromusculaire. Un athlète peut développer une force musculaire qui dépasse la 
+tolérance de charge de ses tendons en l'espace de quelques semaines si la progression n'est 
+pas contrôlée. La méthode Vertical Intelligence intègre donc des fenêtres de récupération 
+tendineuse obligatoires dans chaque plan, non comme une concession, mais comme un 
+vecteur de surcompensation. 
+Enfin, la méthode repose sur la personnalisation par les données. Le coach digital collecte, 
+séance après séance, un ensemble de variables objectives (cotations, RPE, douleur 
+tendineuse, qualité du sommeil) et subjectives (motivation, blocages mentaux, sensation de 
+fluidité) pour ajuster le programme en temps réel. L'entraînement n'est pas un plan figé ; c'est 
+une hypothèse que l'on teste et que l'on affine en permanence. 
+1.2 Disciplines couvertes 
+La méthode couvre quatre modalités d'entraînement complémentaires : 
+ Bloc (bouldering) : discipline de force maximale, de contact et de lecture, sur des voies de 4 
+à 15 mouvements. L'accent est mis sur la qualité des essais plutôt que leur quantité, et sur 
+le développement du registre technique en conditions de haute intensité. 
+ Voie (lead climbing) : discipline combinant endurance de force (power-endurance), gestion 
+du flux et résistance mentale. Les séances sont structurées autour de cycles d'intensité 
+basse, moyenne et haute avec une attention particulière portée à la régularité respiratoire 
+et à la gestion du repos en paroi. 
+
+ Kilter Board / Tension Board : outil de travail spécifique permettant de reproduire des 
+positions et des mouvements de force sur une surface réglable. Particulièrement utile pour 
+le travail de mouvements-types (dyno, compression, dévers) et pour quantifier précisément 
+la progression de force. 
+ Entraînement physique spécifique : hangboard, campus board, exercices de gainage 
+dynamique, renforcement des muscles stabilisateurs de l'épaule (coiffe des rotateurs, 
+trapèzes inférieurs), mobilité fonctionnelle des hanches et des chevilles. 
+1.3 Profils d'athlètes 
+La méthode s'adresse à l'ensemble du spectre de la pratique sportive : 
+ Niveau débutant à intermédiaire (6a → 7b) : l'objectif prioritaire est la construction d'une 
+base technique solide, la diversification des registres de grimpe (dalle, dévers, fissure, 
+coordination) et l'introduction progressive des outils de renforcement spécifique. À ce 
+niveau, la technique représente 70 % des gains potentiels. 
+ Niveau avancé (7b+ → 8b) : l'accent se déplace vers l'optimisation de la force spécifique, le 
+travail de mouvement en conditions d'intensité élevée et la structuration d'une périodisation 
+annuelle. Les projets deviennent des indicateurs de progression concrets. 
+ Niveau élite (8b+ → 9a+) : la marge de progression est fine et exige une personnalisation 
+maximale. Chaque paramètre — ratio poids/force, profil de préhension dominant, zones de 
+fatigue précoce — est analysé avec précision. La gestion mentale et la récupération 
+deviennent des facteurs aussi déterminants que la force brute. 
+ 
+2. CADRE D'ÉVALUATION INITIAL 
+2.1 Paramètres techniques à évaluer 
+L'évaluation technique initiale ne se résume pas à demander la cotation maximale de l'athlète. 
+Elle vise à cartographier le profil de grimpe dans toute sa complexité. 
+Le coach digital doit identifier : 
+ La cotation en tête et en bloc (deux valeurs distinctes, car la dissociation entre les deux 
+révèle souvent un profil technique ou une relation à l'engagement) 
+ Le style de grimpe dominant : est-ce un grimpeur de contact (contact strength, explosivité 
+sur prise de courte durée), de force isométrique (tenu long sur prise dure), ou d'endurance 
+de force (enchaînement de mouvements intenses sur longueur) ? 
+ Les inclinaisons préférentielles : dalle, vertical, dévers léger (30–45°), dévers prononcé 
+(60°+) — un grimpeur fort en dévers peut être très fragile en dalle et vice versa 
+ Les faiblesses gestuelles identifiées : pied non précis, manque de recul, épaules fermées 
+sur les mouvements de lolotte, difficulté à lire les repos, mauvaise gestion des mouvements 
+coordonnés 
+ La progression récente : est-elle en plateau depuis 3 mois ou en phase de progression 
+active ? Ce paramètre conditionne l'intensité de l'intervention du coach. 
+2.2 Évaluation physique 
+L'évaluation physique initiale s'articule autour de trois axes mesurables : 
+Force des doigts. Le test de référence est le max hang test au hangboard sur une prise 
+standardisée (bord 20 mm, demi-fléchi à 90°). Le protocole consiste à ajouter du poids (ou à 
+
+utiliser une poulie de décharge) jusqu'à trouver la charge maximale tenable 10 secondes en 
+position sécurisée. Le ratio charge totale / poids de corps donne un indice de force spécifique 
+comparable entre athlètes : un niveau 7b+ correspond généralement à 1,3–1,4× le poids de 
+corps sur bord 20 mm ; un niveau 8b+ se situe autour de 1,6–1,8×. En l'absence de hangboard 
+instrumenté, le répétition max test (combien de temps peut-on tenir à corps seul sur une prise 
+donnée) offre une alternative qualitative suffisante pour une évaluation initiale. 
+Ratio poids/force. Ce ratio est l'un des paramètres les plus discriminants de la performance en 
+escalade à haut niveau. Il ne faut pas le confondre avec un incitatif à la perte de poids non 
+raisonnée — une réduction de poids sans maintien de la masse musculaire détériore les 
+performances. L'objectif est l'optimisation du ratio, non la réduction du poids seul. 
+Mobilité fonctionnelle. Deux zones sont critiques : les épaules (amplitude en rotation externe, 
+stabilité de la scapula, présence de douleur sub-acromiale) et les hanches (ouverture en 
+abduction, mobilité en flexion profonde qui conditionne la qualité du pied-main et des positions 
+basses en dalle ou en dévers). Ces évaluations sont faites via questionnaire guidé et auto-tests 
+simples décrits par le coach digital. 
+2.3 Questionnaire d'entrée 
+Le questionnaire d'entrée est le premier acte de la relation coach-athlète. Il couvre : 
+ Historique sportif complet : depuis combien d'années grimpe-t-il ? A-t-il pratiqué d'autres 
+sports de force ou d'endurance ? (un ancien gymnaste et un néophyte total n'ont pas les 
+mêmes bases neuromusculaires) 
+ Historique de blessures : poulies (A2/A4, main dominante ou non), épicondylite, 
+tendinopathie des fléchisseurs, conflit sub-acromial — chaque blessure passée est un 
+signal de vigilance permanent 
+ Disponibilité d'entraînement : nombre de séances par semaine, durée moyenne, accès à 
+une salle équipée, à de la falaise, à un hangboard personnel 
+ Objectifs à 3, 6 et 12 mois : la précision des objectifs est directement corrélée à la qualité 
+du plan. Un objectif flou ("progresser") génère un plan flou ; un objectif précis ("enchaîner 
+mon projet 8a de La Ramirole avant fin octobre") permet une périodisation réelle. 
+ 
+3. PROTOCOLES D'ENTRAÎNEMENT 
+3.1 Structure hebdomadaire par phase 
+La saison d'un grimpeur se découpe classiquement en quatre phases distinctes dont la 
+succession varie selon les objectifs compétitifs ou de falaise : 
+Phase de force maximale (4–6 semaines). L'objectif est le développement de la force 
+maximale des doigts et des membres supérieurs. Le volume de grimpe est réduit au profit du 
+travail spécifique : hangboard en intensité élevée (85–95 % de la force maximale), blocs courts 
+et durs (V-max – 1 à V-max), campus board pour les profils avancés. La fréquence est de 3 à 4 
+séances par semaine avec 48 à 72 h de récupération entre les séances de hangboard. 
+Phase d'endurance de force / power-endurance (4–5 semaines). L'objectif est de rendre la 
+force acquise utilisable sur la durée. Les outils principaux sont les circuits de blocs enchaînés 
+(4×4, pyramides d'intensité), les voies répétées sur dévers entre 7b et 7c+ (légèrement sous le 
+niveau maximum), et les linked bouldering problems sur kilter board. L'intensité diminue 
+légèrement par rapport à la phase précédente, mais le volume et la densité augmentent. 
+
+Phase technique (3–4 semaines). Souvent négligée, cette phase est pourtant celle qui 
+transforme la force en performance. On travaille ici les mouvements spécifiques à l'objectif 
+(coordination, compression, mouvements de pieds en dalle, gestuelle en fissure), les 
+voiesprojets en analyse fine et les séances de deliberate practice sur des types de 
+mouvements déficitaires. L'intensité globale est modérée. 
+Récupération active (1–2 semaines). Séances courtes, intensité basse, grimpe plaisir. Ce 
+bloc est non négociable et doit être planifié, non subi. La récupération active permet la 
+surcompensation tendineuse et prévient le syndrome de surentraînement. 
+3.2 Exercices spécifiques et leur programmation 
+Hangboard. Le protocole de référence pour les niveaux 7b+ et au-delà est le max hang sur 
+bord 18–22 mm : 6–10 secondes de tenue, 3 minutes de repos entre les séries, 4 à 6 séries 
+par session, 2 fois par semaine maximum. Pour les niveaux plus avancés, le one-arm 
+deadhang progressif ou les repeaters (7 s tenue / 3 s relâche × 6, avec charge) sont introduits 
+avec précaution. 
+Campus board. Réservé aux athlètes sans antécédent tendineux actif et ayant au minimum 2 
+ans de pratique régulière. Les exercices fondamentaux sont le matching ladder (montée en 
+correspondance), les moves (bonds de prise à prise) et les double dynos. La règle absolue : 
+jamais de campus board en début de séance, toujours après 20 minutes d'échauffement 
+complet et jamais deux jours consécutifs. 
+Blocs de travail et voies projets. La distinction est cruciale : les blocs de travail (work) 
+permettent d'analyser et d'assimiler des mouvements durs en conditions de fraîcheur maximale 
+; les voies projets sont tentées après avoir identifié tous les mouvements individuellement. La 
+règle des "essais de qualité" prime sur la quantité : 5 essais à 100 % d'engagement valent 
+mieux que 15 essais fatigués. 
+3.3 Gestion de la fatigue tendineuse 
+C'est le point le plus critique de la méthode. Les poulies annulaires (A2 notamment) sont des 
+structures fibrocartilagineuses à vascularisation limitée, dont le temps de remodelage est 
+estimé entre 8 et 12 semaines après une sollicitation intense. Les règles de précaution sont les 
+suivantes : 
+ Règle des 0–1–2 : une douleur à 0 sur 10 dans les doigts est le seul signal vert pour une 
+séance de force maximale. Une douleur à 1–2 autorise une séance de volume léger. Toute 
+douleur ≥ 3 impose une pause de 48 h minimum et un protocole de charge excentrique 
+adapté. 
+Pas de progression de plus de 10 % par semaine sur les charges au hangboard. 
+Alternance obligatoire des prises sollicitées : ne jamais travailler exclusivement les crimps 
+ou les slopers sur plusieurs séances consécutives. 
+ Protocole de retour après blessure : 3 semaines de charge légère (20–30 % de la charge 
+maximale), puis progression par paliers de 3 semaines avec réévaluation de la douleur à 
+chaque palier. 
+ 
+
+4. NUTRITION ET RÉCUPÉRATION 
+4.1 Apports nutritionnels pour le grimpeur 
+La nutrition du grimpeur doit répondre à une double exigence : maintenir un ratio poids/force 
+optimal tout en fournissant les substrats nécessaires à l'adaptation tendineuse, musculaire et 
+nerveuse. La restriction calorique agressive est contre-productive et dangereuse — elle 
+favorise la perte de masse musculaire, fragilise les structures tendineuses et dégrade la 
+performance cognitive (lecture, prises de décision en paroi). 
+Les repères pratiques sont les suivants : 
+ Protéines : 1,6 à 2,0 g par kilogramme de poids corporel par jour, réparties en 3 à 4 prises. 
+Une prise protéique dans les 30 à 45 minutes post-séance optimise la synthèse protéique 
+musculaire et la réparation tendineuse. 
+ Glucides : adaptés au volume d'entraînement. Les jours de forte intensité ou de grimpe 
+longue, un apport de 4 à 6 g/kg est recommandé. Les jours de repos, 2 à 3 g/kg suffisent. 
+ Lipides : ne pas descendre en dessous de 0,8–1,0 g/kg par jour, notamment pour la santé 
+hormonale et la réduction de l'inflammation chronique. 
+ Micronutriments ciblés : vitamine C (synthèse de collagène tendineuse), magnésium 
+(contraction musculaire et qualité du sommeil), oméga-3 (anti-inflammatoire). Ces apports 
+sont couverts prioritairement par l'alimentation, la supplémentation n'étant envisagée qu'en 
+cas de carence identifiée. 
+
+4.2 Protocoles de récupération 
+Gestion tendineuse. La méthode préconise l'intégration d'exercices de charge tendineuse 
+excentrique (finger curls, rice bucket) en début ou fin de semaine de récupération active pour 
+stimuler le remodelage du collagène sans créer de fatigue mécanique excessive. 
+Sommeil. C'est le premier facteur de récupération, et il est non substituable. L'objectif est de 7 
+à 9 heures de sommeil par nuit pour les athlètes en phase d'entraînement intense. Une 
+détérioration de la qualité du sommeil (mesurée hebdomadairement par l'athlète sur une 
+échelle 1–10) est un signal d'alarme précoce de surcharge. 
+Étirements et mobilité. Les étirements statiques profonds sont réservés aux jours de 
+récupération ; ils ne doivent pas précéder une séance intense (risque de diminution de la 
+raideur tendineuse passive, qui est un facteur de performance). En revanche, la mobilisation 
+dynamique des épaules, des poignets et des hanches est systématique en échauffement. 
+4.3 Hydratation et conditions environnementales 
+En falaise par temps chaud (>25°C), la déshydratation altère la qualité de préhension sur es 
+
+prises sèches mais aussi la précision gestuelle et la prise de décision. L'objectif est de 
+consommer 500 ml d'eau dans les 2 heures précédant la session et de maintenir un apport 
+régulier pendant la grimpe (200–300 ml toutes les 45 minutes). Les conditions froides (<10°C) 
+réduisent la sensibilité des doigts et la compliance tendineuse — le temps d'échauffement doit 
+être allongé de 10 à 15 minutes par rapport aux conditions standard. 
+ 
+
+5. VARIABLES CLÉS À EXTRAIRE DANS LESCONVERSATIONS 
+5.1 Variables par séance 
+À l'issue de chaque séance, le coach digital collecte : 
+ Cotation maximale du jour (bloc et/ou voie selon la discipline) — ne pas confondre avec le 
+niveau "normal", car les fluctuations quotidiennes sont informatives en elles-mêmes 
+ RPE global de la séance (1 à 10) : permet d'évaluer la charge perçue indépendamment de 
+la charge programmée 
+ Douleur dans les doigts (0 à 10, localisée si possible : doigt précis, main dominante ou 
+non, type de prise associée) 
+Nombre de voies/blocs réalisés et ratio essais/réussite sur les mouvements-clés 
+Nouveaux mouvements débloqués : chaque mouvement réussi pour la première fois est 
+un marqueur de progrès qualitatif à documenter 
+5.2 Variables hebdomadaires 
+Qualité du sommeil (1 à 10, moyenne sur la semaine) 
+Niveau de stress extra-sportif (1 à 10 : travail, vie personnelle) — facteur souvent 
+sousestimé dans la récupération 
+
+ Poids corporel (le matin à jeun, pour suivre les tendances sans focaliser 
+obsessionnellement sur une valeur unique) 
+ Ressenti global de la semaine : fatigue résiduelle, motivation à l'entraînement, qualité des 
+sensations sur les prises 
+5.3 Variables mensuelles 
+ Progression de cotation : comparaison avec le bilan du mois précédent, en distinguant les 
+nouveaux niveaux atteints des anciens niveaux consolidés 
+ Projets validés : un projet validé est un objectif défini au début d'un cycle et enchaîné 
+proprement 
+ Motivation générale (1 à 10) : indicateur de l'état psychologique global, à corréler avec la 
+charge d'entraînement et les résultats 
+5.4 Signaux d'alerte tendineux et protocole de réponse 
+Le coach digital doit identifier immédiatement les signaux suivants et répondre de manière 
+protocolée : 
+ Douleur ≥ 3/10 pendant la grimpe → arrêt immédiat de la séance, application de glace 
+(15 min), repos 48 h, consultation médicale si la douleur persiste 
+ Douleur localisée à l'atterrissage du doigt sur la prise ou "clicking sound" → suspicion 
+de lésion de poulie, protocole d'urgence : arrêt total, consultation kiné/médecin du sport 
+dans les 72 h 
+ Douleur ≥ 1/10 présente au réveil après une séance → la séance suivante de force est 
+décalée de 48 h minimum 
+ Plateau de douleur entre 1 et 2/10 sur plus de 2 semaines consécutives → révision 
+complète du plan de charge, introduire 2 semaines de récupération active, consultation kiné 
+ 
+
+
+6. COMMUNICATION ET PSYCHOLOGIE DE LAPERFORMANCE 
+6.1 Style de communication du coach digital 
+Le coach Vertical Intelligence adopte un style analytique, encourageant et direct. Analytique, 
+parce que chaque feedback est ancré dans des données concrètes ("ton RPE de 9 hier après 
+seulement 1h30 de grimpe indique une fatigue accumulée") plutôt que dans des impressions 
+vagues. Encourageant, parce que la progression en escalade est non-linéaire et que les 
+plateaux sont des phases normales de réorganisation neuromusculaire. Direct, parce que le 
+confort à court terme ne doit pas primer sur l'honnêteté à long terme — si l'athlète sur-entraîne, 
+le coach le dit clairement. 
+Le coach digital évite absolument le ton condescendant, les généralisations non fondées ("tu 
+dois grimper plus souvent") et les objectifs non mesurables. Il pose des questions ouvertes 
+avant de proposer des solutions, parce que la compréhension du vécu subjectif de l'athlète est 
+aussi importante que les données objectives. 
+6.2 Gestion des blocages psychologiques 
+Les blocages sur un projet. Un blocage dure le temps qu'il dure — l'erreur classique est de 
+multiplier les essais à la fatigue jusqu'à l'ancrage d'un pattern d'échec. La réponse du coach est 
+d'abord analytique : le blocage est-il physique (pas assez fort sur un mouvement spécifique), 
+technique (mauvais séquençage, mauvais placement de pied), ou mental (peur, précipitation) ? 
+Chaque origine appelle une réponse différente. 
+La peur du vol. En voie, la peur du vol est l'une des limites les plus fréquentes des grimpeurs 
+intermédiaires. Le protocole recommandé est une progression graduée et dédramatisée : 
+séances de fall training dédiées (chutes progressivement plus engagées avec un assureur de 
+confiance), travail de respiration et d'ancrage mental avant les passages-clés, et verbalisation 
+des peurs sans jugement. Le coach digital n'enjoint jamais à "voler quand même" sans avoir 
+préalablement construit la confiance. 
+Les plateaux de progression. Un plateau est presque toujours le signe d'un déséquilibre dans 
+les quatre piliers. Le coach digital réalise un audit rapide : technique (séances suffisamment 
+variées ?), force (stimulus suffisamment intense ?), récupération (sommeil et charge bien gérés 
+?), motivation (l'objectif est-il encore signifiant ?). La réponse est rarement d'augmenter le 
+volume — c'est souvent de modifier la qualité ou la nature du stimulus. 
+6.3 Structure du debriefing post-séance 
+Le debriefing post-séance suit une structure en quatre temps : 
+1. Ce qui s'est passé objectivement : cotations, RPE, douleurs, réussites. Pas 
+d'interprétation à ce stade, juste les faits. 
+2. Ce que l'athlète a ressenti : fluidité, blocages, surprises positives, moments de doute. 
+Cette partie est aussi importante que les données objectives. 
+3. Ce que cela signifie pour la suite immédiate : la prochaine séance doit-elle être 
+maintenue, allégée ou modifiée ? Y a-t-il un signal d'alerte à prendre en compte ? 
+4. Rappel de l'objectif à moyen terme : chaque séance s'inscrit dans un arc narratif plus 
+long. Rappeler l'objectif donne du sens à la fatigue du jour et maintient la motivation dans 
+les phases difficiles. 
+
+
+
+Ce debriefing peut être réalisé en 5 à 10 minutes via un échange conversationnel structuré avec le coach digital. Il n'a pas vocation à être exhaustif mais à être régulier — la continuité des données est plus précieuse que la profondeur ponctuelle de chaque analyse. 
+
+ 
+
+AVERTISSEMENT: Ce document est un exemple illustratif généré par intelligence artificielle, produit dans le seul but de démontrer et tester le système MetaOpenCoach. Il ne constitue pas un guide d'entraînement certifié et ne remplace pas une évaluation médicosportive préalable ni le jugement d'un professionnel qualifié. Les auteurs du projet MetaOpenCoach déclinent toute responsabilité pour tout dommage direct, indirect ou consécutif résultant de l'utilisation, de l'utilisation abusive ou de l'interprétation erronée de ce document ou de toute application générée à partir de celui-ci, y compris les blessures physiques, la détérioration de la santé ou les préjudices causés à des tiers. L'utilisation implique la pleine acceptation de ces conditions. MetaOpenCoach | Exemple Généré par IA | Version 1.0 — 2026

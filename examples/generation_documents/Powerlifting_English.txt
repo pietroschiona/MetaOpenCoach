@@ -1,0 +1,442 @@
+FORGE STRENGTH COACHING
+A Professional Methodology for IPF-Affiliated Powerlifting
+Athletes
+Prepared by the Forge Strength Coaching System — IPF Certified Technical Official & Head
+Coach
+
+
+
+
+1. Coaching Identity & Philosophy
+Method Name and Core Mission
+The Forge Strength Method is built on a single foundational conviction: strength is not merely
+a physical attribute — it is a cultivated discipline that emerges from intelligent programming,
+honest self-assessment, and the patient accumulation of quality work over time.
+
+The methodology exists to guide competitive powerlifters within the IPF and its affiliated
+national federations from their first sanctioned meet through the highest levels of national
+competition.
+
+The name reflects the process: steel does not become a blade by accident; it is heated,
+shaped, and refined through deliberate, repeated application of stress and recovery.
+
+The philosophy can be summarized in three guiding tenets.
+
+First, specificity is non-negotiable: an athlete preparing for an IPF-affiliated meet must be
+trained in the competition lifts — the squat, bench press, and deadlift — executed precisely
+according to current IPF Technical Rules.
+
+Every training decision must be filtered through the question: does this make the athlete better
+at the three lifts as judged on the platform?
+
+Second, progressive overload is the engine of adaptation: the body must be presented with
+a stimulus slightly beyond what it has previously encountered.
+
+This does not mean maximal effort every session — it means the systematic management of
+load, volume, and density across time.
+
+Third, fatigue management is the art: accumulated fatigue masks fitness.
+
+A tired athlete does not perform like a strong athlete.
+
+Managing fatigue through intelligent deload structure, autoregulation, and lifestyle monitoring is
+what separates a coach from a spreadsheet.
+
+
+Athlete Profiles
+This methodology is designed to serve athletes across the full IPF weight class spectrum —
+from 59 kg to +93 kg (women) and 66 kg to +120 kg (men) — competing in Classic (raw)
+powerlifting under current IPF Technical Rules.
+
+The Forge Strength Method accommodates three tiers of experience:
+
+   Novice athletes (< 2 years of structured barbell training, no sanctioned meet experience):
+    primary goal is learning competition movement patterns and establishing a reliable training
+    total.
+   Intermediate athletes (2–5 years, 1–5 meets competed): goal is systematic total
+    progression using mesocycle-to-mesocycle loading, targeting regional and national
+    qualifying standards.
+   Advanced athletes (5+ years, national-level competitors): goal is total optimization, IPF GL
+    Point maximization, and strategic competition calendar management.
+
+
+
+
+2. Initial Assessment Framework
+Establishing the Strength Baseline
+Before a single training session is prescribed, the coach must establish where the athlete
+actually is — not where they think they are.
+
+The intake process begins with a submaximal strength assessment rather than a true 1RM
+test, particularly for novice and intermediate athletes.
+
+A standardized warm-up protocol is used, and the athlete performs an AMRAP (as many reps
+as possible) set at a known percentage to allow for 1RM estimation using the Epley or Brzycki
+formula.
+
+These estimates — for the squat, bench press, and deadlift — form the programming baseline.
+
+For athletes with recent competition history, the last verified competition total is preferred as the
+working reference point.
+
+From these numbers, an IPF GL Points baseline is calculated using the athlete's current body
+weight and total.
+
+This score — rather than the raw total alone — becomes the primary long-term progress metric,
+as it allows meaningful comparison across weight classes and accounts for body composition
+changes over a competitive career.
+
+Where relevant, DOTS scores may also be tracked for athletes competing in USAPL-affiliated
+events or for comparative benchmarking.
+
+
+Movement Screening Protocol
+A full movement screening is conducted in the first two sessions.
+
+For the squat, the coach assesses hip flexion depth with and without heel elevation, ankle
+dorsiflexion range of motion, and the athlete's natural stance width and toe angle.
+
+For the bench press, shoulder internal and external rotation, thoracic spine extension, and
+scapular retraction capacity are evaluated.
+
+For the deadlift, hip hinge mechanics, hamstring length, and the athlete's structural suitability
+for conventional versus sumo stance are assessed.
+
+Bar path tendencies and compensatory patterns are documented and form the basis of early
+technique intervention.
+
+
+The Intake Questionnaire
+Every incoming athlete completes a structured written questionnaire covering six domains:
+ 1. Training History: years of barbell training, prior programming exposure (linear, DUP,
+    conjugate, etc.), average training days per week, and any periods of detraining.
+ 2. Injury History: all prior musculoskeletal injuries, including onset mechanism, treatment,
+    and current status. Athletes with active pain are referred for physiotherapy clearance before
+    full programming begins.
+ 3. Competition History: meets competed, results, equipment used (belt, sleeves, wraps),
+    federations competed in, and best meet total.
+ 4. Competition Goals: target meet date, target weight class, and realistic total goal based on
+    assessed strength levels.
+ 5. Lifestyle Factors: occupation (sedentary vs. physical), average daily steps, sleep duration
+    and consistency, alcohol consumption, and general dietary habits.
+ 6. Recovery Resources: access to gym equipment, time availability per session, access to
+    supplementary recovery modalities (massage, physiotherapy, sauna).
+
+This data determines not just the starting weights on the bar, but the entire architecture of the
+athlete's initial macrocycle — session frequency, average intensity, and the degree of
+accessory work prescribed.
+
+
+
+
+3. Training Protocols
+Periodization Model: Block Periodization with DUP Elements
+The Forge Strength Method employs block periodization as its primary structural framework,
+segmented into three sequential mesocycles: Accumulation, Intensification, and Peaking.
+
+This approach is selected because it leverages phase potentiation — the principle that gains
+made in one training block directly enhance performance in the subsequent block.
+
+Each block typically spans 4–6 weeks for intermediate and advanced athletes, and 6–8 weeks
+for novices where the accumulation phase demands more time to build movement quality and
+work capacity.
+
+Within each block, elements of Daily Undulating Periodization (DUP) are layered at the
+session level.
+
+This means that within a single training week, the athlete encounters sessions with different rep
+ranges, intensities, and emphasis — preventing accommodation while maintaining specificity
+across the entire cycle.
+
+For example, a lifter in the intensification block may train the squat at 80% for sets of 3 on
+Monday, at 72% for sets of 5 on Wednesday for technical volume, and perform a single heavier
+top-set on Friday.
+
+This undulation ensures that no single energy system or motor quality stagnates.
+
+Weekly Structure by Phase
+Accumulation Phase (Weeks 1–5): The primary objective is building a broad base of volume
+at sub-maximal intensities.
+
+Training frequencies of 3–4 days per week are standard.
+
+Average training intensity sits between 68–75% of 1RM, with weekly volume sets in the range
+of 15–25 working sets across the three competition lifts.
+Accessory work is substantial: Romanian deadlifts, paused squats, close-grip bench press, and
+upper back work form the connective tissue of this phase.
+
+Prilepin's Table serves as a general reference for optimal volume at given intensity zones,
+ensuring the athlete accumulates quality work without exceeding recoverable thresholds.
+
+Intensification Phase (Weeks 6–10): Volume is reduced by approximately 20–30% relative to
+the accumulation peak, while average intensity climbs to 78–87% of 1RM.
+
+Top sets of 2–3 reps at near-maximal effort begin to appear.
+
+The athlete's technique under heavier loads is carefully scrutinized, and form corrections
+identified in the accumulation phase are reinforced before they are tested under higher
+intensities.
+
+Competition-specific commands — "squat," "rack," "start," "press," "rack" — are integrated into
+all top sets to normalize the timing and mental pattern of IPF judging.
+
+Peaking Phase (Weeks 11–14): Volume drops to its lowest point of the cycle — typically 40–
+50% of accumulation peak — while intensity climbs to 90–100%+ of estimated 1RM.
+
+Singles, doubles, and attempt-simulation sets dominate.
+
+By Week 12, the athlete should have performed all three competition lifts for singles at
+approximately 92–95% in a simulated meet environment.
+
+Week 13 typically includes a taper with moderate volume and 85–90% intensity to peak the
+nervous system without inducing new fatigue.
+
+The final week before competition (Week 14) is a deload: only competition-specific warm-up
+sets, no true working sets, and full rest two days before the platform.
+
+
+Intensity and Volume Guidelines by Level
+ Phase                              Novice      Intermediate    Advanced
+
+ Accumulation Avg. Intensity        65–72%      68–76%          70–78%
+
+ Intensification Avg. Intensity     75–82%      78–85%          82–88%
+
+ Peaking Top Singles                90–93%      92–96%          95–102%+
+
+ Weekly Working Sets (all 3         12–18       16–24           20–30
+ lifts)
+
+ Training Days/Week                 3           3–4             4–5
+Technique Coaching Points
+Squat: The athlete must achieve depth with the top surface of the thigh at the hip joint below
+the top of the knee — per IPF judging standards.
+
+Coaching cues emphasize a "big breath and brace" before unracking, creating maximal
+intraabdominal pressure.
+
+The descent is controlled: "spread the floor" activates hip abductors; "chest up" prevents
+forward lean under fatigue.
+
+On the ascent, the cue "drive the hips through" prevents the hips from rising faster than the
+chest, which causes a good-morning squat pattern and missed white lights.
+Bench Press: The IPF requires the bar to pause motionless on the chest before the "press"
+command is given.
+
+Athletes must internalize the pause as a mechanical advantage — not a penalty.
+
+Coaching cues: "pull the bar apart" activates the lats and protects the shoulder; "drive your
+traps into the bench" maintains arch stability; "press in an arc toward the rack" establishes a
+bar path that maximizes leverage.
+
+Elbow angle (45–75° depending on the lifter's anatomy) is individualized and never imposed by
+a generic template.
+
+Deadlift: Setup is everything.
+
+The athlete is cued to "push the floor away" rather than "pull the bar up" — this subtle reframe
+activates the quads off the floor and prevents the early hip rise that kills leverage at mid-shin.
+
+For conventional pullers: "lats locked, arms straight, proud chest."
+
+For sumo pullers: "floor apart, hips to the bar."
+
+The lockout requires hips through and shoulders back in a single coordinated movement.
+
+Per the 2026 IPF Technical Rules, hitching and re-gripping during the lift result in a red light.
+
+Athletes who struggle with lockout must address this through accessory work (rack pulls,
+Romanian deadlifts) and are regularly reminded of the judging standard.
+
+
+
+
+4. Nutrition & Recovery
+Macronutrient Targets
+Nutrition is prescribed as a performance variable, not an aesthetic one.
+
+During the strength and accumulation phases, the primary goal is maintaining a positive or
+neutral energy balance to support recovery and adaptation.
+
+Protein targets are set at 2.0–2.4 g per kg of body weight — sufficient to support muscle
+protein synthesis and connective tissue recovery.
+
+Carbohydrates form the primary energy substrate for barbell sport and are set at 4–6 g/kg
+during high-volume training phases, with emphasis on peri-workout intake.
+
+Fats are maintained at a minimum of 1.0–1.2 g/kg to support hormonal function, particularly
+testosterone production in male athletes.
+
+During meet prep (final 6–8 weeks), energy targets are adjusted based on whether the athlete
+is competing at their current body weight or needs to make a weight class.
+
+Athletes who are within 2–3% of their weight class limit compete at their natural training weight.
+
+Those requiring a larger cut enter a managed mild caloric deficit — no more than 300–400 kcal
+below maintenance — to preserve muscle and strength.
+
+Crash dieting in the final weeks before a meet is explicitly contraindicated in this methodology.
+Weight Class Management
+For athletes requiring a same-day or 24-hour weigh-in cut, the Forge Strength Method employs
+a two-phase strategy.
+
+Phase One begins 10–14 days out: modest water manipulation through reduced sodium intake
+and moderate carbohydrate restriction.
+
+Phase Two, if needed in the final 24 hours, uses controlled water restriction and potentially a
+brief sweat session (sauna or light exercise in warm clothing).
+
+No athlete is ever directed to make a water cut exceeding 5% of body weight for a 24-hour
+weigh-in, as research consistently demonstrates that heavier cuts impair maximal strength
+expression even with full rehydration.
+
+Post-weigh-in rehydration prioritizes electrolyte-rich fluids (sodium, potassium, magnesium) and
+carbohydrate restoration, with a structured eating timeline from weigh-in to warm-up.
+
+
+Recovery Protocols
+Sleep is the single highest-leverage recovery variable available to the non-pharmacological
+athlete.
+
+A target of 7.5–9 hours per night is non-negotiable during accumulation and intensification
+phases.
+
+Athletes are educated on sleep hygiene: consistent wake time, dark and cool sleeping
+environment, and avoidance of training within 3 hours of bedtime for athletes with known sleep
+difficulties.
+
+Deload weeks are scheduled every 4–6 weeks depending on athlete recovery capacity,
+dropping weekly volume to approximately 40% of the preceding week and intensity to no more
+than 80% of 1RM.
+
+These are not optional — they are programmed as recovery investments, not signs of
+weakness.
+
+Stress management is addressed directly: chronic psychological stress elevates cortisol,
+suppresses recovery, and reduces training adaptations.
+
+Athletes under high external stress (work, family, academic) are proactively prescribed reduced
+intensity programs rather than allowing accumulated fatigue to produce injury or performance
+regression.
+
+
+
+
+5. Continuous Monitoring
+Daily and Session Variables
+The Forge Strength Method relies on a continuous stream of athlete-reported data to calibrate
+training in real time.
+
+The following variables are collected daily:
+
+   Body weight (measured upon waking, post-void, before eating) — used to track short-term
+    fluid and dietary patterns, and to monitor weight-class proximity.
+   Sleep quality (1–10 scale, subjective) — scores below 5 for two consecutive nights trigger a
+    conversation about session modification.
+    Energy level (1–10 scale, pre-training) — used to adjust intensity on the day.
+    Stress level (1–10 scale, psychosocial) — consistently elevated scores above 7 trigger
+ deload consideration.
+
+Per training session, the athlete reports:
+
+   RPE (Rate of Perceived Exertion) on the Borg 1–10 scale for each competition lift top set
+    — the expected RPE is prescribed in advance, and deviation of ±1.5 or more is flagged.
+    Top set weight and reps completed
+    Any pain or joint discomfort, graded by location, onset, and severity
+ (sharp/dull/ache/burning).
+
+All reports of sharp or acute onset pain result in immediate removal of the offending movement
+and physiotherapy referral.
+
+Weekly monitoring includes self-reported recovery status, motivation level (1–10), and
+nutritional adherence (percentage of prescribed meals hit).
+
+This data is reviewed weekly and informs the following week's training adjustments.
+
+
+Red Flags and Overtraining Response
+The following constitute overtraining red flags requiring immediate programming intervention: a
+3+ consecutive day decline in sleep quality below 5; RPE consistently 1.5+ points above
+prescribed across two consecutive sessions; body weight drop exceeding 1.5 kg in 7 days
+outside of a planned cut; or the athlete self-reporting motivation below 4 for more than five
+days.
+
+The response protocol is a structured mini-deload: three days of active rest (light movement,
+mobility, no barbells), followed by a reassessment session at 70% intensity, followed by a
+coaching call to address potential lifestyle or programming causes.
+
+
+
+
+6. Communication & Sport Psychology
+Communication Style and Tone
+The Forge Strength coaching voice is direct, evidence-informed, and human.
+
+Athletes are never spoken to in platitudes or vague motivational language — they receive
+specific, actionable feedback based on their actual performance data.
+
+The coach's role is to be the athlete's most informed ally: honest about where they are, clear
+about what is required, and genuinely invested in their long-term development.
+
+This means that difficult conversations — about a missed lift, a weight class that no longer
+makes sense, or a lifestyle factor undermining performance — are held with respect and clarity,
+not avoided.
+
+
+Handling Missed Lifts and Competitive Anxiety
+When an athlete misses a lift in training, the coach's first response is diagnostic, not reactive.
+Was the miss technical (bar path, depth, timing), or was it a load management error (weight too
+heavy for the session's prescribed RPE)?
+
+The athlete is walked through a brief verbal analysis on the spot, given one correction cue, and
+— if appropriate — retried at the same or slightly reduced weight to rebuild confidence and
+motor pattern accuracy.
+
+Athletes are explicitly taught that a missed training lift is data, not failure.
+
+Competition anxiety is addressed through process-focused preparation.
+
+In the final two weeks before a meet, the athlete rehearses their full competition routine:
+warmup sequence, opening attempt selection, command timing, and post-attempt mental reset.
+
+Attempt selection strategy is drilled until it is automatic: opening attempts are selected at 90–
+93% of expected day-max, representing a technically sound, nearly guaranteed lift.
+
+Second attempts are 97–101% of expected day-max.
+
+Third attempts are reserved for competition records or strategic best-lifter points.
+
+No athlete should be making a decision about their third attempt in an emotionally charged
+moment on the platform — that decision is pre-planned and only adjusted by the coach based
+on real-time energy and performance data.
+
+
+Post-Meet Debrief Framework
+Within one week after every competition, a structured debrief session is conducted.
+
+The debrief analyzes:
+
+ 1. Technical execution — were there consistent technical faults across the three lifts,
+    particularly under maximal loads?
+ 2. Attempt selection — did the opening attempt build confidence or reveal preparation gaps?
+    Were third attempts strategically sound?
+ 3. Competition-day logistics — weigh-in timing, warm-up sequence execution, energy levels
+    on the platform.
+ 4. IPF GL Points earned versus target — was the performance consistent with the training
+    cycle's projected outcome?
+ 5. Psychological performance — how did the athlete manage nerves, missed lifts, and
+    competition environment?
+
+From this debrief, the next macrocycle's priorities are established.
+
+Weaknesses identified on the platform — a missed squat at depth, a failed lockout on deadlift,
+a slow press off the chest — directly determine accessory work priorities and technical focus for
+the incoming accumulation phase.
+
+The cycle begins again: assess, forge, compete, reflect.
+
+
+
+
+DISCLAIMER: This document is an AI-generated illustrative example produced solely for testing and demonstration purposes within the MetaOpenCoach generation system. It does not constitute certified, validated, or professionally endorsed coaching advice. No content herein substitutes for a qualified sports medicine evaluation or a certified professional's assessment. The MetaOpenCoach project contributors accept no liability for any direct, indirect, or consequential damages arising from the use, misuse, or misinterpretation of this document or any application generated from it, including physical injury, health deterioration, or harm to third parties. Use of this document implies full acceptance of these terms. MetaOpenCoach | AI-Generated Example | Version 1.0 — 2026
+

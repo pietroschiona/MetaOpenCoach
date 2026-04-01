@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="marked.min.js"></script>
+    <title>Coach_of_Escalada_Français - AI Coach</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="print.css" media="print">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div id="api-key-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h2>Welcome to Coach_of_Escalada_Français!</h2>
+            <p>Configure your AI engine. You can use Google Gemini, OpenAI, or Local Models.</p>
+            <form id="modal-api-form">
+                <div class="form-group">
+                    <label for="modal-ai-provider">AI Provider</label>
+                    <select id="modal-ai-provider" class="form-control">
+                        <option value="google">Google Gemini</option>
+                        <option value="lmstudio">LM Studio (Local) (Recommended)</option>
+                        <option value="openai">OpenAI (ChatGPT)</option>
+                        <option value="ollama">Ollama (Local)</option>
+                        <option value="custom">Custom (OpenAI Compatible)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modal-api-key">API Key</label>
+                    <input type="password" id="modal-api-key" class="form-control" placeholder="Enter API key (optional for local)...">
+                    <small id="key-help">For LM Studio: leave empty if you haven't set a key.</small>
+                </div>
+                <div class="form-group" id="modal-url-group">
+                    <label for="modal-ai-url">API Base URL</label>
+                    <input type="text" id="modal-ai-url" class="form-control" value="http://localhost:1234/v1">
+                </div>
+                <div class="form-group" id="modal-model-group">
+                    <label for="modal-ai-model">Model ID</label>
+                    <input type="text" id="modal-ai-model" class="form-control" value="qwen3.5-2b">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Save & Start</button>
+            </form>
+            <div id="modal-feedback" class="feedback"></div>
+        </div>
+    </div>
+    
+    <div class="main-layout auth-gated">
+        <div class="left-panel">
+            <header>
+                 <div class="header-content">
+                    <h1>Coach_of_Escalada_Français</h1>
+
+                    <nav>
+                         <a href="/dashboard.html" class="btn btn-secondary nav-green">📊</a>
+                         <a href="/clients.html" class="btn btn-secondary nav-red">👥</a>
+                         <a href="/settings.html" class="settings-icon nav-gray" title="API Settings">⚙️</a>
+                         <button class="theme-toggle" id="fullscreen-toggle" title="Schermo Intero">⛶</button>
+                    </nav>
+                 </div>
+            </header>
+             <div class="user-selection-area">
+                <label for="user-select">Select Athlete:</label>
+                <div class="list-controls">
+                    <input type="search" id="user-search" class="form-control" placeholder="Search by name...">
+                    <select id="user-sort" class="form-control">
+                        <option value="alpha-asc">Name (A-Z)</option>
+                        <option value="alpha-desc">Name (Z-A)</option>
+                        <option value="date-desc">Most Recent</option>
+                        <option value="date-asc">Least Recent</option>
+                    </select>
+                </div>
+                <select id="user-select" class="form-control"></select>
+            </div>
+
+            <div id="prompt-editor">
+                <h3>Quick Commands</h3>
+                <div class="prompt-buttons">
+                    <button id="prompt-btn-full" class="prompt-btn">1. Adaptive Session Builder</button>
+                    <button id="prompt-btn-training" class="prompt-btn">2. Session Intensity Randomizer</button>
+                    <button id="prompt-btn-nutrition" class="prompt-btn">3. Progressive Overload Cue</button>
+                    <button id="prompt-btn-plan" class="prompt-btn">4. Short-Term Peaking Block</button>
+                    <button id="prompt-btn-skill" class="prompt-btn">5. Skill Attempt Sequencer</button>
+                    <button id="prompt-btn-weekly-analysis" class="prompt-btn">6. Prehab & Mobility</button>
+                    <button id="prompt-btn-recovery" class="prompt-btn">7. Recovery Strategy</button>
+                    <button id="prompt-btn-time-saver" class="prompt-btn">8. Time-Saver Program</button>
+                    <button id="prompt-btn-mind-body" class="prompt-btn">9. Mind-Body Integration</button>
+                    <button id="prompt-btn-injury" class="prompt-btn">10. Injury Management</button>
+                    <button id="prompt-btn-variation" class="prompt-btn">11. Variations & Alternatives</button>
+                    <button id="prompt-btn-cycle" class="prompt-btn">12. Cycle Optimization</button>
+                    <button id="prompt-btn-pre-event" class="prompt-btn">13. Pre-Event Routine</button>
+                    <button id="prompt-btn-body-comp" class="prompt-btn">14. Body Comp Strategy</button>
+                    <button id="prompt-btn-checklist" class="prompt-btn">15. Daily Checklist</button>
+                </div>
+            </div>
+        </div>
+        <div id="chat-wrapper">
+            <header class="chat-header card" style="border-radius: 0; border-bottom: 1px solid var(--border-color); box-shadow: none;">
+                <div class="header-content">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            C
+                        </div>
+                        <h2 id="chat-title" style="margin: 0;">Coach_of_Escalada_Français AI</h2>
+
+                    </div>
+                </div>
+            </header>
+            <div id="chat-container">
+                <div id="chat-box"></div>
+                <div id="loading" class="hidden message ai-message" style="background: transparent !important; box-shadow: none;">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <form id="chat-form">
+                    <textarea id="message-input" placeholder="Ask Coach_of_Escalada_Français to create a program..." required></textarea>
+
+                    <button type="submit" title="Send Message">
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const apiKeyModal = document.getElementById('api-key-modal');
+            const modalForm = document.getElementById('modal-api-form');
+            const userSelect = document.getElementById('user-select');
+            const userSearch = document.getElementById('user-search');
+            const userSort = document.getElementById('user-sort');
+            const chatBox = document.getElementById('chat-box');
+            const chatForm = document.getElementById('chat-form');
+            const messageInput = document.getElementById('message-input');
+            const loadingIndicator = document.getElementById('loading');
+            
+            // AI Config Elements
+            const modalProvider = document.getElementById('modal-ai-provider');
+            const modalKey = document.getElementById('modal-api-key');
+            const modalModel = document.getElementById('modal-ai-model');
+            const modalUrl = document.getElementById('modal-ai-url');
+            const modalUrlGroup = document.getElementById('modal-url-group');
+            const keyHelp = document.getElementById('key-help');
+
+            let allUsers = [];
+            let currentLoadedUserId = null;
+
+            const aiPresets = {
+                google: { url: 'https://generativelanguage.googleapis.com/v1beta/openai', model: 'gemini-1.5-flash', help: 'Enter your Google Gemini API key.' },
+                lmstudio: { url: 'http://localhost:1234/v1', model: 'qwen3.5-2b', help: 'Make sure LM Studio is active with the qwen3.5-2b model.' },
+                openai: { url: 'https://api.openai.com/v1', model: 'gpt-4o-mini', help: 'Enter your OpenAI API key (sk-...).' },
+                ollama: { url: 'http://localhost:11434/v1', model: 'qwen2.5-coder:1.5b', help: 'Leave empty if Ollama does not require auth.' },
+                custom: { url: '', model: '', help: 'Enter URL and Key of your custom provider.' }
+            };
+
+            modalProvider.addEventListener('change', () => {
+                const preset = aiPresets[modalProvider.value];
+                modalUrl.value = preset.url;
+                modalModel.value = preset.model;
+                keyHelp.textContent = preset.help;
+                
+                // Show/Hide URL and Model based on provider
+                const needsUrl = (modalProvider.value === 'custom' || modalProvider.value === 'ollama' || modalProvider.value === 'lmstudio');
+                modalUrlGroup.style.display = needsUrl ? 'block' : 'none';
+            });
+
+            function validateApiKey(key, provider) {
+                if (provider === 'google' || provider === 'openai' || provider === 'custom') {
+                    if (!key || key.trim() === '') return { isValid: false, message: 'API key is required for this provider.' };
+                }
+                return { isValid: true };
+            }
+
+            modalForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const feedbackEl = document.getElementById('modal-feedback');
+                const key = modalKey.value.trim();
+                const provider = modalProvider.value;
+                const url = modalUrl.value.trim();
+                const model = modalModel.value.trim();
+
+                const v = validateApiKey(key, provider);
+                if (!v.isValid) {
+                    feedbackEl.textContent = v.message;
+                    feedbackEl.className = 'feedback visible error';
+                    return;
+                }
+
+                feedbackEl.className = 'feedback visible';
+                feedbackEl.textContent = 'Saving...';
+                try {
+                    const res = await fetch('/api/settings/ai-config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ apiKey: key, aiProvider: provider, aiBaseUrl: url, aiModel: model })
+                    });
+                    if (!res.ok) throw new Error('Error during save.');
+                    feedbackEl.textContent = 'Configuration complete!';
+                    feedbackEl.className = 'feedback visible success';
+                    setTimeout(() => location.reload(), 1500);
+                } catch(err) {
+                    feedbackEl.textContent = err.message;
+                    feedbackEl.className = 'feedback visible error';
+                }
+            });
+
+            // Chat & Users Logic
+            function printMessage(content) {
+                const printFrame = document.createElement('iframe');
+                printFrame.style.position = 'absolute';
+                printFrame.style.width = '0';
+                printFrame.style.height = '0';
+                printFrame.style.border = '0';
+                document.body.appendChild(printFrame);
+                const frameDoc = printFrame.contentWindow.document;
+                const userName = userSelect.options[userSelect.selectedIndex]?.text || 'Athlete';
+                const safeHtml = (typeof marked !== 'undefined')
+                  ? marked.parse(content || '')
+                  : (content || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                frameDoc.open();
+                frameDoc.write(`<!DOCTYPE html><html><head><title>Print</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="print.css"></head><body><h1>Program for ${userName}</h1><div class="print-content">${safeHtml}</div></body></html>`);
+                frameDoc.close();
+                setTimeout(() => { printFrame.contentWindow.focus(); printFrame.contentWindow.print(); document.body.removeChild(printFrame); }, 300);
+            }
+
+            function copyMessage(text, btn) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const old = btn.textContent; btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = old, 1500);
+                });
+            }
+
+            function addMessage(text, role) {
+                const sender = (role === 'user') ? 'user' : 'ai';
+                const div = document.createElement('div');
+                div.className = `message ${sender}-message`;
+                if (sender === 'ai') {
+                    const content = document.createElement('div');
+                    const safeHtml = (typeof marked !== 'undefined')
+                      ? marked.parse(text || '')
+                      : (text || '').replace(/\n/g, '<br>');
+                    content.innerHTML = safeHtml;
+                    div.appendChild(content);
+                    const actions = document.createElement('div');
+                    actions.className = 'message-actions';
+                    const cpBtn = document.createElement('button'); cpBtn.textContent = 'Copy'; cpBtn.onclick = () => copyMessage(text, cpBtn);
+                    const prBtn = document.createElement('button'); prBtn.textContent = 'Print'; prBtn.onclick = () => printMessage(text);
+                    actions.appendChild(cpBtn); actions.appendChild(prBtn);
+                    div.appendChild(actions);
+                } else {
+                    const content = document.createElement('div');
+                    const safeHtml = (typeof marked !== 'undefined')
+                      ? marked.parse(text || '')
+                      : (text || '').replace(/\n/g, '<br>');
+                    content.innerHTML = safeHtml;
+                    div.appendChild(content);
+                }
+                chatBox.appendChild(div);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            async function loadChatForUser(userId) {
+                if (!userId) return;
+                loadingIndicator.classList.remove('hidden');
+                chatBox.innerHTML = '';
+                try {
+                    const res = await fetch(`/api/users/${userId}`);
+                    const user = await res.json();
+                    if (user.chatHistory?.length) user.chatHistory.forEach(m => addMessage(m.content, m.role));
+                    else addMessage(`Hi ${user.name}! I'm Coach_of_Escalada_Français, how can I help you today?`, 'ai');
+
+                } catch(e) {} finally { loadingIndicator.classList.add('hidden'); }
+            }
+
+            function renderAndLoadUsers() {
+                const search = userSearch.value.toLowerCase();
+                const sortMethod = userSort.value;
+                let filtered = allUsers.filter(u => u.name.toLowerCase().includes(search));
+                
+                // Enhanced Sorting Logic
+                filtered.sort((a, b) => {
+                    switch(sortMethod) {
+                        case 'alpha-asc': return a.name.localeCompare(b.name);
+                        case 'alpha-desc': return b.name.localeCompare(a.name);
+                        case 'date-desc': return (b.createdAt || 0) - (a.createdAt || 0);
+                        case 'date-asc': return (a.createdAt || 0) - (b.createdAt || 0);
+                        default: return 0;
+                    }
+                });
+
+                userSelect.innerHTML = '';
+                filtered.forEach(u => {
+                    const opt = document.createElement('option');
+                    opt.value = u.id;
+                    
+                    // Helper to check for missing check-in
+                    const needsCheckin = (user) => {
+                        const now = new Date();
+                        const lastUpdate = user.riskFactors?.lastUpdate ? new Date(user.riskFactors.lastUpdate) : null;
+                        if (!lastUpdate) return true;
+                        const diffDays = (now - lastUpdate) / (1000 * 60 * 60 * 24);
+                        return diffDays > 7;
+                    };
+
+                    const statusIndicator = needsCheckin(u) ? '🔴 ' : '';
+                    const emoji = u.emoji || '👤';
+                    const risk = u.riskFactors?.riskLevel?.toUpperCase() || 'N/A';
+                    
+                    opt.textContent = `${statusIndicator}${emoji} ${u.name} [${risk}]`;
+                    
+                    // Risk-based coloration (Browser support varies)
+                    const riskLevel = (u.riskFactors?.riskLevel || 'unknown').toLowerCase();
+                    if (riskLevel === 'high') opt.style.color = '#ff4d4d';
+                    else if (riskLevel === 'medium') opt.style.color = '#ffa500';
+                    else if (riskLevel === 'low') opt.style.color = '#4ade80';
+
+                    userSelect.appendChild(opt);
+                });
+
+                if (userSelect.value && userSelect.value !== currentLoadedUserId) {
+                    currentLoadedUserId = userSelect.value;
+                    loadChatForUser(userSelect.value);
+                }
+            }
+
+            async function fetchUsersAndInit() {
+                try {
+                    const res = await fetch('/api/users');
+                    allUsers = await res.json();
+                    renderAndLoadUsers();
+                } catch(e) {}
+            }
+
+            function handleVisualPromptClick(txt) {
+                messageInput.value = txt; messageInput.focus();
+            }
+
+            // Quick Commands Wiring
+            
+const bindPrompt = (id, text) => {
+    const btn = document.getElementById(id);
+    if (btn) btn.onclick = () => handleVisualPromptClick(text);
+};
+
+// --- QUICK_COMMANDS_START ---
+
+document.getElementById('prompt-btn-full').onclick = () => handleVisualPromptClick("Crée une session d'escalade adaptative de [DURATION_min] minutes pour l'objectif: [OBJECTIVE: force_maximale/power_endurance/technique/récupération_active]. Équipement disponible: extraire du profil (ex: pan Güllich, barre à pull-up, système de poulies, prise type 20mm). Historique RPE de la semaine: [valeur]. Priorité technique de la session: [texte]. Fournis: échauffement détaillé (minutes et exercices spécifiques escalade), travail technique (exercices de lecture ou placement sur pan, séries x durée), bloc de force principale (ex: max hangs, campus board léger), travail accessoire (ex: renforcement antagonistes, gainage), timing précis pour chaque bloc, et une progression suggérée pour les 3 prochaines sessions avec ajustements de charge et de complexité.");
+document.getElementById('prompt-btn-training').onclick = () => handleVisualPromptClick("Pour la session de base décrite: [BRIEF SESSION DESCRIPTION], génère 3 variantes (Légère / Standard / Choc). Pour chaque variante, indique les changements précis de volume (nombre de voies/blocs, temps sous tension), d'intensité (% de la force max, cotation), de récupération entre les essais et blocs, et le RPE attendu. Fournis des règles de décision claires pour choisir la variante en fonction du RPE moyen de la semaine écoulée et de la qualité du sommeil (heures et perception de la récupération).");
+document.getElementById('prompt-btn-nutrition').onclick = () => handleVisualPromptClick("Programme 4 micro-progressions consécutives pour la [SKILL: ex: tenue sur prise 20mm en demi-fléchi] en partant d'un meilleur temps de [s] avec élastique [L/M/Ø]. Objectif: +[s] en 4 sessions. Spécifie pour chaque session: l'exercice principal (ex: repeaters, max hangs), le format série x durée/repetition, la modification de l'élastique ou de l'inclinaison du corps, le RPE cible, et des indices techniques détaillés pour une exécution parfaite (position des épaules, engagement du dos, répartition du poids, respiration).");
+document.getElementById('prompt-btn-plan').onclick = () => handleVisualPromptClick("Prépare un bloc d'affûtage de [Jours: 7-10] jours pour maximiser la performance lors du test [TEST: ex: meilleure tenue sur prise 20mm +2s] avec date de test [DATE]. Inclut une phase de tapering progressive, la programmation quotidienne (intensité, volume, repos actif), une stratégie nutritionnelle détaillée pour les 48h pré-test (timing des repas, hydratation, glycogène), et un plan de récupération post-test structuré sur plusieurs jours pour prévenir les blessures et optimiser la supercompensation.");
+document.getElementById('prompt-btn-skill').onclick = () => handleVisualPromptClick("Organise la séquence des tentatives pour le jour de test sur la [SKILL: ex: Tenue en lever de pied sur prise à deux doigts]: échauffement détaillé progressif (mobilité, activation, essais à intensité croissante), 5 tentatives de rampe avec temps/objectifs précis pour chacune, temps de récupération recommandé entre les tentatives (actif/passif), critères d'arrêt immédiat (douleur >2/10, dégradation technique flagrante, RPE >9), et un debrief final avec les métriques à enregistrer (temps tenu, perception de l'effort, qualité de l'exécution, douleur résiduelle).");
+document.getElementById('prompt-btn-weekly-analysis').onclick = () => handleVisualPromptClick("Génère un protocole quotidien de prévention et mobilité de [DURATION_min] minutes pour la [ZONE: poignets/coudes/épaules], durée du plan: [7/14] jours, niveau: [débutant/intermédiaire/avancé]. Pour chaque jour, indique des exercices spécifiques (avec une progression hebdomadaire claire), les répétitions/temps de maintien, et des signaux clairs pour arrêter (douleur aiguë, sensation de pincement, perte de contrôle neuromusculaire). Adapte les exercices à la sollicitation en escalade (ex: rotations de poignet sous charge, étirements des fléchisseurs).");
+document.getElementById('prompt-btn-recovery').onclick = () => handleVisualPromptClick("Crée un organigramme textuel pour la gestion de la douleur aiguë à l'[EMPLACEMENT: ex: poulie A2] avec une intensité perçue [1-10], un début [aigu/insidieux], présence de gonflement [O/N]. Fournis les étapes immédiates (arrêt total/modification de la prise), les critères pour un déload versus une consultation médicale urgente, les actions conservatrices (glace, compression, mobilisation douce), et les critères stricts pour un retour à l'entraînement (absence de douleur au repos, au touché, et lors de tests de charge légère).");
+document.getElementById('prompt-btn-time-saver').onclick = () => handleVisualPromptClick("Suggère une correction calorique et des priorités en macronutriments en partant de: poids actuel, variation de poids hebdomadaire [ex: 0.2 kg par semaine], poids cible, protéines cibles [ex: 2g par kg]. Fournis une plage d'ajustement kcal (+/-), une distribution recommandée des macros (protéines, glucides, lipides) adaptée à un grimpeur, et une checklist de paramètres à surveiller sur les 2 semaines suivantes (poids, force relative, qualité de la récupération, fringales, état des tendons).");
+document.getElementById('prompt-btn-mind-body').onclick = () => handleVisualPromptClick("Crée une bibliothèque de progression minimale pour l'équipement: [extraire l'équipement disponible du profil]. Pour chaque exercice clé ([ex: deadhang sur prise 20mm et traction type front lever]) fournis 5 étapes de progression et 2 régressions sécuritaires, avec des critères précis pour passer à l'étape supérieure (temps de maintien, RPE, technique) et le RPE cible pour chaque étape. Inclus des alternatives si l'équipement spécifique manque.");
+document.getElementById('prompt-btn-injury').onclick = () => handleVisualPromptClick("Écris un script de préparation mentale de [DURATION_s: ex: 75] secondes pour pré-tentative sur [SKILL], intention: [calme/motivation/concentration]. Inclus: un pattern respiratoire spécifique (durée inspiration/rétention/expiration), 3 indices moteurs précis (ex: 'scapulas engagées', 'hanche serrée', 'regard sur la prise de sortie'), une phrase motivationnelle à répéter, et des instructions sur la posture physique et la préparation immédiate (balancement, prise de conscience corporelle).");
+document.getElementById('prompt-btn-variation').onclick = () => handleVisualPromptClick("Génère un briefing hebdomadaire coach-athlète: inclus 1) Résumé des KPI (Poids, Masse Grasse, Stress, Sommeil, Sessions Complétées), 2) une priorité technique pour la semaine (ex: amélioration du placement de pied en dévers), 3) deux tâches pratiques (ex: réaliser 10 min de mobilité de hanches quotidienne / filmer un essai sur projet), 4) le check-in requis (jour/horaire), et 5) une note motivationnelle courte liée à l'objectif de cycle.");
+document.getElementById('prompt-btn-cycle').onclick = () => handleVisualPromptClick("Crée une checklist format A4 pour la session [Session spécifique à l'escalade]. Inclus: un en-tête avec date/heure, la pré-séance (repas, hydratation), l'équipement nécessaire, l'échauffement étape par étape, le travail technique, la force excentrique (ex: négatifs au campus), le gainage spécifique, le retour au calme, la revue vidéo, les KPI à noter, et les signaux d'alerte (douleur, fatigue excessive). Laisse des espaces remplissables pour les temps/notes. Formate clairement pour impression.");
+document.getElementById('prompt-btn-pre-event').onclick = () => handleVisualPromptClick("Prépare 7 micro-routines mentales pour améliorer la concentration et la gestion du stress: inclus 1) pré-séance: respiration 60s + visualisation 20s du déroulé parfait, 2) pré-tentative: rituel de 90s (respiration, ancrage, cue moteur), 3) post-session: debrief journalier avec 5 questions précises. Fournis les scripts mot à mot avec des suggestions de timing et d'environnement pour chaque routine.");
+document.getElementById('prompt-btn-body-comp').onclick = () => handleVisualPromptClick("Crée un plan de repas hebdomadaire pour atteindre les cibles macro. Fournis 7 jours avec des portions, les valeurs kcal/macros par repas, et une liste de courses rationalisée pour la semaine (protéines, glucides, légumes, graisses, collations). Adapte les aliments à la disponibilité française et aux besoins d'un grimpeur (densité nutritionnelle, collations pré/post entraînement).");
+document.getElementById('prompt-btn-checklist').onclick = () => handleVisualPromptClick("Crée 8 modèles de messages (SMS/email) pour l'accountability: 1) rappel pré-séance, 2) check-in post-séance, 3) semaine critique (deload), 4) célébration de milestone. Maintenir un ton direct et motivant. Fournis également les heures d'envoi recommandées en fonction des habitudes typiques d'un grimpeur (ex: matin pour le rappel, soir pour le check-in).");
+
+// --- QUICK_COMMANDS_END ---
+
+
+document.querySelectorAll('[id^="prompt-btn-"]').forEach(btn => {
+    if (!btn.onclick) {
+        console.warn('[BTN] Button without handler:', btn.id);
+        btn.onclick = () => handleVisualPromptClick("Quick command not yet configured: " + btn.textContent);
+    }
+});
+
+
+            userSelect.addEventListener('change', () => {
+                currentLoadedUserId = userSelect.value;
+                loadChatForUser(userSelect.value);
+            });
+            userSearch.addEventListener('input', renderAndLoadUsers);
+            userSort.addEventListener('change', renderAndLoadUsers);
+
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const msg = messageInput.value.trim();
+                const uid = userSelect.value;
+                if (!msg || !uid) return;
+                addMessage(msg, 'user');
+                messageInput.value = '';
+                messageInput.style.height = '60px'; // Reset height
+                loadingIndicator.classList.remove('hidden');
+                try {
+                    const res = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userId: uid, message: msg })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Error from LLM server.');
+                    addMessage(data.reply, 'ai');
+                } catch(e) { addMessage(`Communication error: ${e.message}`, 'error'); }
+                finally { loadingIndicator.classList.add('hidden'); }
+            });
+
+            async function checkApiStatusAndInit() {
+                const res = await fetch('/api/settings/ai-config');
+                if (res.status === 401) return;
+                const data = await res.json();
+                if (data.configDone) {
+                    apiKeyModal.style.display = 'none';
+                    await fetchUsersAndInit();
+                } else {
+                    apiKeyModal.style.display = 'flex';
+                }
+            }
+
+            function setupWebSocket() {
+                const ws = new WebSocket(`ws://${window.location.host}`);
+                ws.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'heartbeat') ws.send(JSON.stringify({ type: 'heartbeat_ack' }));
+                    } catch(e) {}
+                };
+                ws.onclose = () => {
+                    document.body.innerHTML = '<div style="display:flex; height:100vh; align-items:center; justify-content:center; background:#000; color:#fff;"><h1>Server Disconnected</h1></div>';
+                };
+            }
+
+            checkApiStatusAndInit();
+            setupWebSocket();
+
+            // Fullscreen toggle logic with persistence
+            const fsToggle = document.getElementById('fullscreen-toggle');
+            const updateFS = () => {
+                const isActive = !!document.fullscreenElement;
+                sessionStorage.setItem('fs_persistence', isActive);
+                if (fsToggle) fsToggle.textContent = isActive ? '🗗' : '⛶';
+            };
+
+            if (fsToggle) {
+                fsToggle.addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(e => console.error(e));
+                    } else {
+                        if (document.exitFullscreen) document.exitFullscreen();
+                    }
+                });
+            }
+
+            document.addEventListener('fullscreenchange', updateFS);
+
+            // Auto-reactivation on first interaction (bypasses browser policy)
+            document.body.addEventListener('click', () => {
+                if (sessionStorage.getItem('fs_persistence') === 'true' && !document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                }
+            }, { once: true });
+
+            // Theme toggle logic (Removed from header but kept in JS for potential future use/settings)
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+
+            // Chat input auto-resize (up to 3x)
+            if (messageInput) {
+                messageInput.style.height = '60px'; // Base height
+                messageInput.style.overflowY = 'hidden';
+                messageInput.style.maxHeight = '180px'; // Approx 3x base height
+                
+                messageInput.addEventListener('input', function() {
+                    this.style.height = '60px'; // Temporarily reset to recalculate scrollHeight properly
+                    const newHeight = Math.min(this.scrollHeight, 180);
+                    this.style.height = newHeight + 'px';
+                    this.style.overflowY = (this.scrollHeight > 180) ? 'auto' : 'hidden';
+                });
+            }
+        });
+    </script>
+    <script>
+      // Marked configuration: safe, no external sanitizer
+      marked.setOptions({
+        breaks: true,        // \n → <br>
+        gfm: true,           // GitHub Flavored Markdown
+        headerIds: false,    // No IDs in headers (security)
+        mangle: false
+      });
+    </script>
+</body>
+</html>

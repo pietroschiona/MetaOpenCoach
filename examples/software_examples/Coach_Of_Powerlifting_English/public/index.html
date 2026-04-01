@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="marked.min.js"></script>
+    <title>Coach_Of_Powerlifting_English - AI Coach</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="print.css" media="print">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div id="api-key-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h2>Welcome to Coach_Of_Powerlifting_English!</h2>
+            <p>Configure your AI engine. You can use Google Gemini, OpenAI, or Local Models.</p>
+            <form id="modal-api-form">
+                <div class="form-group">
+                    <label for="modal-ai-provider">AI Provider</label>
+                    <select id="modal-ai-provider" class="form-control">
+                        <option value="google">Google Gemini</option>
+                        <option value="lmstudio">LM Studio (Local) (Recommended)</option>
+                        <option value="openai">OpenAI (ChatGPT)</option>
+                        <option value="ollama">Ollama (Local)</option>
+                        <option value="custom">Custom (OpenAI Compatible)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modal-api-key">API Key</label>
+                    <input type="password" id="modal-api-key" class="form-control" placeholder="Enter API key (optional for local)...">
+                    <small id="key-help">For LM Studio: leave empty if you haven't set a key.</small>
+                </div>
+                <div class="form-group" id="modal-url-group">
+                    <label for="modal-ai-url">API Base URL</label>
+                    <input type="text" id="modal-ai-url" class="form-control" value="http://localhost:1234/v1">
+                </div>
+                <div class="form-group" id="modal-model-group">
+                    <label for="modal-ai-model">Model ID</label>
+                    <input type="text" id="modal-ai-model" class="form-control" value="qwen3.5-2b">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Save & Start</button>
+            </form>
+            <div id="modal-feedback" class="feedback"></div>
+        </div>
+    </div>
+    
+    <div class="main-layout auth-gated">
+        <div class="left-panel">
+            <header>
+                 <div class="header-content">
+                    <h1>Coach_Of_Powerlifting_English</h1>
+
+                    <nav>
+                         <a href="/dashboard.html" class="btn btn-secondary nav-green">📊</a>
+                         <a href="/clients.html" class="btn btn-secondary nav-red">👥</a>
+                         <a href="/settings.html" class="settings-icon nav-gray" title="API Settings">⚙️</a>
+                         <button class="theme-toggle" id="fullscreen-toggle" title="Schermo Intero">⛶</button>
+                    </nav>
+                 </div>
+            </header>
+             <div class="user-selection-area">
+                <label for="user-select">Select Athlete:</label>
+                <div class="list-controls">
+                    <input type="search" id="user-search" class="form-control" placeholder="Search by name...">
+                    <select id="user-sort" class="form-control">
+                        <option value="alpha-asc">Name (A-Z)</option>
+                        <option value="alpha-desc">Name (Z-A)</option>
+                        <option value="date-desc">Most Recent</option>
+                        <option value="date-asc">Least Recent</option>
+                    </select>
+                </div>
+                <select id="user-select" class="form-control"></select>
+            </div>
+
+            <div id="prompt-editor">
+                <h3>Quick Commands</h3>
+                <div class="prompt-buttons">
+                    <button id="prompt-btn-full" class="prompt-btn">1. Adaptive Session Builder</button>
+                    <button id="prompt-btn-training" class="prompt-btn">2. Session Intensity Randomizer</button>
+                    <button id="prompt-btn-nutrition" class="prompt-btn">3. Progressive Overload Cue</button>
+                    <button id="prompt-btn-plan" class="prompt-btn">4. Short-Term Peaking Block</button>
+                    <button id="prompt-btn-skill" class="prompt-btn">5. Skill Attempt Sequencer</button>
+                    <button id="prompt-btn-weekly-analysis" class="prompt-btn">6. Prehab & Mobility</button>
+                    <button id="prompt-btn-recovery" class="prompt-btn">7. Recovery Strategy</button>
+                    <button id="prompt-btn-time-saver" class="prompt-btn">8. Time-Saver Program</button>
+                    <button id="prompt-btn-mind-body" class="prompt-btn">9. Mind-Body Integration</button>
+                    <button id="prompt-btn-injury" class="prompt-btn">10. Injury Management</button>
+                    <button id="prompt-btn-variation" class="prompt-btn">11. Variations & Alternatives</button>
+                    <button id="prompt-btn-cycle" class="prompt-btn">12. Cycle Optimization</button>
+                    <button id="prompt-btn-pre-event" class="prompt-btn">13. Pre-Event Routine</button>
+                    <button id="prompt-btn-body-comp" class="prompt-btn">14. Body Comp Strategy</button>
+                    <button id="prompt-btn-checklist" class="prompt-btn">15. Daily Checklist</button>
+                </div>
+            </div>
+        </div>
+        <div id="chat-wrapper">
+            <header class="chat-header card" style="border-radius: 0; border-bottom: 1px solid var(--border-color); box-shadow: none;">
+                <div class="header-content">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            C
+                        </div>
+                        <h2 id="chat-title" style="margin: 0;">Coach_Of_Powerlifting_English AI</h2>
+
+                    </div>
+                </div>
+            </header>
+            <div id="chat-container">
+                <div id="chat-box"></div>
+                <div id="loading" class="hidden message ai-message" style="background: transparent !important; box-shadow: none;">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <form id="chat-form">
+                    <textarea id="message-input" placeholder="Ask Coach_Of_Powerlifting_English to create a program..." required></textarea>
+
+                    <button type="submit" title="Send Message">
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const apiKeyModal = document.getElementById('api-key-modal');
+            const modalForm = document.getElementById('modal-api-form');
+            const userSelect = document.getElementById('user-select');
+            const userSearch = document.getElementById('user-search');
+            const userSort = document.getElementById('user-sort');
+            const chatBox = document.getElementById('chat-box');
+            const chatForm = document.getElementById('chat-form');
+            const messageInput = document.getElementById('message-input');
+            const loadingIndicator = document.getElementById('loading');
+            
+            // AI Config Elements
+            const modalProvider = document.getElementById('modal-ai-provider');
+            const modalKey = document.getElementById('modal-api-key');
+            const modalModel = document.getElementById('modal-ai-model');
+            const modalUrl = document.getElementById('modal-ai-url');
+            const modalUrlGroup = document.getElementById('modal-url-group');
+            const keyHelp = document.getElementById('key-help');
+
+            let allUsers = [];
+            let currentLoadedUserId = null;
+
+            const aiPresets = {
+                google: { url: 'https://generativelanguage.googleapis.com/v1beta/openai', model: 'gemini-1.5-flash', help: 'Enter your Google Gemini API key.' },
+                lmstudio: { url: 'http://localhost:1234/v1', model: 'qwen3.5-2b', help: 'Make sure LM Studio is active with the qwen3.5-2b model.' },
+                openai: { url: 'https://api.openai.com/v1', model: 'gpt-4o-mini', help: 'Enter your OpenAI API key (sk-...).' },
+                ollama: { url: 'http://localhost:11434/v1', model: 'qwen2.5-coder:1.5b', help: 'Leave empty if Ollama does not require auth.' },
+                custom: { url: '', model: '', help: 'Enter URL and Key of your custom provider.' }
+            };
+
+            modalProvider.addEventListener('change', () => {
+                const preset = aiPresets[modalProvider.value];
+                modalUrl.value = preset.url;
+                modalModel.value = preset.model;
+                keyHelp.textContent = preset.help;
+                
+                // Show/Hide URL and Model based on provider
+                const needsUrl = (modalProvider.value === 'custom' || modalProvider.value === 'ollama' || modalProvider.value === 'lmstudio');
+                modalUrlGroup.style.display = needsUrl ? 'block' : 'none';
+            });
+
+            function validateApiKey(key, provider) {
+                if (provider === 'google' || provider === 'openai' || provider === 'custom') {
+                    if (!key || key.trim() === '') return { isValid: false, message: 'API key is required for this provider.' };
+                }
+                return { isValid: true };
+            }
+
+            modalForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const feedbackEl = document.getElementById('modal-feedback');
+                const key = modalKey.value.trim();
+                const provider = modalProvider.value;
+                const url = modalUrl.value.trim();
+                const model = modalModel.value.trim();
+
+                const v = validateApiKey(key, provider);
+                if (!v.isValid) {
+                    feedbackEl.textContent = v.message;
+                    feedbackEl.className = 'feedback visible error';
+                    return;
+                }
+
+                feedbackEl.className = 'feedback visible';
+                feedbackEl.textContent = 'Saving...';
+                try {
+                    const res = await fetch('/api/settings/ai-config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ apiKey: key, aiProvider: provider, aiBaseUrl: url, aiModel: model })
+                    });
+                    if (!res.ok) throw new Error('Error during save.');
+                    feedbackEl.textContent = 'Configuration complete!';
+                    feedbackEl.className = 'feedback visible success';
+                    setTimeout(() => location.reload(), 1500);
+                } catch(err) {
+                    feedbackEl.textContent = err.message;
+                    feedbackEl.className = 'feedback visible error';
+                }
+            });
+
+            // Chat & Users Logic
+            function printMessage(content) {
+                const printFrame = document.createElement('iframe');
+                printFrame.style.position = 'absolute';
+                printFrame.style.width = '0';
+                printFrame.style.height = '0';
+                printFrame.style.border = '0';
+                document.body.appendChild(printFrame);
+                const frameDoc = printFrame.contentWindow.document;
+                const userName = userSelect.options[userSelect.selectedIndex]?.text || 'Athlete';
+                const safeHtml = (typeof marked !== 'undefined')
+                  ? marked.parse(content || '')
+                  : (content || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                frameDoc.open();
+                frameDoc.write(`<!DOCTYPE html><html><head><title>Print</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="print.css"></head><body><h1>Program for ${userName}</h1><div class="print-content">${safeHtml}</div></body></html>`);
+                frameDoc.close();
+                setTimeout(() => { printFrame.contentWindow.focus(); printFrame.contentWindow.print(); document.body.removeChild(printFrame); }, 300);
+            }
+
+            function copyMessage(text, btn) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const old = btn.textContent; btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = old, 1500);
+                });
+            }
+
+            function addMessage(text, role) {
+                const sender = (role === 'user') ? 'user' : 'ai';
+                const div = document.createElement('div');
+                div.className = `message ${sender}-message`;
+                if (sender === 'ai') {
+                    const content = document.createElement('div');
+                    const safeHtml = (typeof marked !== 'undefined')
+                      ? marked.parse(text || '')
+                      : (text || '').replace(/\n/g, '<br>');
+                    content.innerHTML = safeHtml;
+                    div.appendChild(content);
+                    const actions = document.createElement('div');
+                    actions.className = 'message-actions';
+                    const cpBtn = document.createElement('button'); cpBtn.textContent = 'Copy'; cpBtn.onclick = () => copyMessage(text, cpBtn);
+                    const prBtn = document.createElement('button'); prBtn.textContent = 'Print'; prBtn.onclick = () => printMessage(text);
+                    actions.appendChild(cpBtn); actions.appendChild(prBtn);
+                    div.appendChild(actions);
+                } else {
+                    const content = document.createElement('div');
+                    const safeHtml = (typeof marked !== 'undefined')
+                      ? marked.parse(text || '')
+                      : (text || '').replace(/\n/g, '<br>');
+                    content.innerHTML = safeHtml;
+                    div.appendChild(content);
+                }
+                chatBox.appendChild(div);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            async function loadChatForUser(userId) {
+                if (!userId) return;
+                loadingIndicator.classList.remove('hidden');
+                chatBox.innerHTML = '';
+                try {
+                    const res = await fetch(`/api/users/${userId}`);
+                    const user = await res.json();
+                    if (user.chatHistory?.length) user.chatHistory.forEach(m => addMessage(m.content, m.role));
+                    else addMessage(`Hi ${user.name}! I'm Coach_Of_Powerlifting_English, how can I help you today?`, 'ai');
+
+                } catch(e) {} finally { loadingIndicator.classList.add('hidden'); }
+            }
+
+            function renderAndLoadUsers() {
+                const search = userSearch.value.toLowerCase();
+                const sortMethod = userSort.value;
+                let filtered = allUsers.filter(u => u.name.toLowerCase().includes(search));
+                
+                // Enhanced Sorting Logic
+                filtered.sort((a, b) => {
+                    switch(sortMethod) {
+                        case 'alpha-asc': return a.name.localeCompare(b.name);
+                        case 'alpha-desc': return b.name.localeCompare(a.name);
+                        case 'date-desc': return (b.createdAt || 0) - (a.createdAt || 0);
+                        case 'date-asc': return (a.createdAt || 0) - (b.createdAt || 0);
+                        default: return 0;
+                    }
+                });
+
+                userSelect.innerHTML = '';
+                filtered.forEach(u => {
+                    const opt = document.createElement('option');
+                    opt.value = u.id;
+                    
+                    // Helper to check for missing check-in
+                    const needsCheckin = (user) => {
+                        const now = new Date();
+                        const lastUpdate = user.riskFactors?.lastUpdate ? new Date(user.riskFactors.lastUpdate) : null;
+                        if (!lastUpdate) return true;
+                        const diffDays = (now - lastUpdate) / (1000 * 60 * 60 * 24);
+                        return diffDays > 7;
+                    };
+
+                    const statusIndicator = needsCheckin(u) ? '🔴 ' : '';
+                    const emoji = u.emoji || '👤';
+                    const risk = u.riskFactors?.riskLevel?.toUpperCase() || 'N/A';
+                    
+                    opt.textContent = `${statusIndicator}${emoji} ${u.name} [${risk}]`;
+                    
+                    // Risk-based coloration (Browser support varies)
+                    const riskLevel = (u.riskFactors?.riskLevel || 'unknown').toLowerCase();
+                    if (riskLevel === 'high') opt.style.color = '#ff4d4d';
+                    else if (riskLevel === 'medium') opt.style.color = '#ffa500';
+                    else if (riskLevel === 'low') opt.style.color = '#4ade80';
+
+                    userSelect.appendChild(opt);
+                });
+
+                if (userSelect.value && userSelect.value !== currentLoadedUserId) {
+                    currentLoadedUserId = userSelect.value;
+                    loadChatForUser(userSelect.value);
+                }
+            }
+
+            async function fetchUsersAndInit() {
+                try {
+                    const res = await fetch('/api/users');
+                    allUsers = await res.json();
+                    renderAndLoadUsers();
+                } catch(e) {}
+            }
+
+            function handleVisualPromptClick(txt) {
+                messageInput.value = txt; messageInput.focus();
+            }
+
+            // Quick Commands Wiring
+            
+const bindPrompt = (id, text) => {
+    const btn = document.getElementById(id);
+    if (btn) btn.onclick = () => handleVisualPromptClick(text);
+};
+
+// --- QUICK_COMMANDS_START ---
+
+document.getElementById('prompt-btn-full').onclick = () => handleVisualPromptClick("Create an adaptive powerlifting session of [DURATION_min] minutes tailored for an IPF competitor. Primary objective: [OBJECTIVE: max strength/technical skill/peaking/conditioning]. Available equipment: extrapolate from the athlete's profile (e.g., power rack, calibrated plates, bench, bands, chains). Consider the 1-week RPE history: [value]. Technical priority for this session: [text, e.g., improving squat depth consistency]. Provide a comprehensive plan including: specific warm-up (exercises, reps, and minutes), technique skill work (e.g., pause squats for sets x reps), main strength work (exercise, percentage/RPE, sets, reps), accessory hypertrophy work (exercises, sets, reps), strict timing for each block (e.g., 15min warm-up, 30min main lift), and a clear suggested progression for the next 3 sessions based on today's performance and RPE targets.");
+document.getElementById('prompt-btn-training').onclick = () => handleVisualPromptClick("For the described powerlifting training session: [BRIEF SESSION DESCRIPTION, e.g., heavy squat day with 5x5 @80%], generate 3 distinct variants (Light / Standard / Shock) for an IPF athlete. For each variant, explicitly detail changes in volume (total sets and reps), intensity (percentage of 1RM or RPE target), inter-set recovery times (in seconds/minutes), and the expected post-set RPE (Rate of Perceived Exertion) for the main lifts. Provide clear, data-driven decision rules for the coach to choose the variant based on the athlete's average RPE from the previous microcycle and their reported weekly sleep quality and duration, linking specific sleep scores to intensity modifications.");
+document.getElementById('prompt-btn-skill').onclick = () => handleVisualPromptClick("Program 4 consecutive micro-progression sessions for the powerlifting skill: [SKILL: e.g., competition pause bench press], starting from a current best of [weight]kg for [reps] or a [s] second hold. Objective: increase by [+weight]kg or [+reps] reps in 4 sessions. Specify for each session: main exercise (e.g., Spoto press, 2-count pause bench), set x rep scheme (e.g., 4x4), specific modification (e.g., using [L/M/Ø] bands for accommodating resistance, or altering bench grip width in cm), target RPE for the top set (6-9.5), and 3 technical execution cues for perfect form (e.g., 'drive traps into bench', 'pull bar apart', 'controlled touch on sternum').");
+document.getElementById('prompt-btn-plan').onclick = () => handleVisualPromptClick("Prepare a detailed peaking block of [Days: 7-10] days to maximize performance for an IPF powerlifting meet or 1RM test on [TEST: e.g., Squat 1RM], with the competition date on [DATE]. Include a precise tapering protocol: daily programming outlining exercise selection (competition lifts only or minimal variations), intensity (%1RM progression from 85% down to 90%+), volume (set/rep reduction), and rest days. Detail a 48-hour pre-test nutritional strategy focusing on carbohydrate loading, sodium and water manipulation, and meal timing. Also, provide a structured post-test recovery plan for the 72 hours following the meet, including nutrition, hydration, active recovery, and a deload week structure.");
+document.getElementById('prompt-btn-pre-event').onclick = () => handleVisualPromptClick("Organize the complete attempt sequence for an IPF powerlifting meet day for the [LIFT: e.g., Squat]. Provide a minute-by-minute detailed warm-up protocol (exercises, reps, jumps to opener). Outline 5 specific ramp attempts (including weights as percentages of projected max, e.g., 50%x5, 70%x3, 80%x2, 90%x1, 95%x1) with objective for each (e.g., 'activate CNS', 'groove technique'). Specify recommended recovery time between attempts (e.g., 5-8 minutes), and clear criteria for stopping the warm-up or changing attempt selections (based on acute pain location, technique failure like excessive forward lean, or RPE exceeding 9). Conclude with a final debrief framework listing metrics to record (e.g., bar speed, perceived stability, commands followed).");
+document.getElementById('prompt-btn-body-comp').onclick = () => handleVisualPromptClick("Generate a daily prehab & mobility protocol of [DURATION_min] minutes for the [AREA: e.g., shoulders/lower back/hips] critical for powerlifting, to be followed for [7/14] consecutive days, designed for a [beginner/intermediate/advanced] level athlete. For each day, list specific exercises (e.g., banded pull-aparts, cat-cow, 90/90 hip rotations) with a clear weekly progression in load, time under tension, or range of motion. Specify exact repetitions or hold times for each exercise. Include clear, objective signals to stop an exercise immediately (e.g., sharp pain, numbness, or compensatory movement patterns) and guidelines for overall session termination.");
+document.getElementById('prompt-btn-injury').onclick = () => handleVisualPromptClick("Create a detailed textual flowchart for acute pain management in a powerlifter at [LOCATION: e.g., anterior shoulder] with a perceived intensity of [1-10], onset [acute/insidious], and presence of swelling [Y/N]. Provide immediate on-site steps (stop the lift, modify movement, apply compression). Establish criteria for a training deload (e.g., pain <3, no swelling) versus requiring immediate medical consultation (e.g., pain >7, clicking, instability). List conservative actions (e.g., ice application protocol, pain-free mobility exercises like scapular circles). Define strict, objective criteria for a phased return to training (e.g., pain-free full range of motion, strength symmetry >90%, ability to perform a light bench press with empty bar without symptoms).");
+document.getElementById('prompt-btn-nutrition').onclick = () => handleVisualPromptClick("Suggest precise kcal correction and macronutrient priorities for a powerlifter. Starting data: current weight [kg], weekly weight variation [e.g., +0.5 kg per week], target weight for meet [kg], target protein intake [e.g., 2.2g per kg]. Provide a calculated kcal adjustment range (e.g., +/- 200-400 kcal from current intake). Recommend a detailed macronutrient distribution (grams and percentages for protein, carbohydrates, fats) aligned with the training phase (accumulation vs. peaking). Supply a checklist of parameters to monitor closely over the following 2 weeks: daily morning weight, sleep quality, session RPE, hunger levels, and waist circumference to assess efficacy and adjust.");
+document.getElementById('prompt-btn-variation').onclick = () => handleVisualPromptClick("Create a minimal exercise progression library for a powerlifter with the following available equipment: [extract available equipment from profile, e.g., barbell, rack, bench, bands, chains]. For each key competition lift variation ([e.g., Low Bar Squat and Competition Bench Press]), provide 5 distinct progression steps (e.g., Box Squat, Tempo Squat, Paused Squat, Competition Squat, Squat with Chains) and 2 safe regressions (e.g., Goblet Squat, Safety Bar Squat). For each step and regression, specify clear criteria for advancing (e.g., 'achieve 3x5 @8 RPE with perfect depth'), the target RPE range for working sets, and the primary technical focus point.");
+document.getElementById('prompt-btn-mind-body').onclick = () => handleVisualPromptClick("Write a verbatim mental preparation script of [DURATION_s: e.g., 75] seconds for a powerlifter immediately before a maximal attempt on the [LIFT: e.g., Deadlift], with the primary intent of [calm/motivation/concentration]. Include: a specific breathing pattern with exact timing (e.g., 4-second inhale, 2-second hold, 6-second exhale for 3 cycles), 3 lift-specific motor cues (e.g., 'lats tight', 'push floor away', 'chest proud'), a short, powerful motivational phrase to repeat internally, and concrete instructions on final posture and physical preparation (e.g., 'set feet at hip-width', 'grip the bar until knuckles are white', 'take a big belly breath and brace').");
+document.getElementById('prompt-btn-weekly-analysis').onclick = () => handleVisualPromptClick("Generate a structured weekly coach-athlete brief for an IPF powerlifter. Include: 1) KPI summary table (Body Weight, Fat Mass estimate, Stress Level 1-10, Average Sleep Hours/Quality, Completed Workouts vs. Planned). 2) One technical priority for the upcoming week (e.g., 'Improve deadlift lockout speed'). 3) Two practical, actionable tasks (e.g., 'Perform 3 sets of banded face pulls post-training' and 'Record and send a side-view video of your squat opener'). 4) Required check-in schedule (Day and Time, e.g., 'Wednesday, 7 PM via voice note'). 5) A short, personalized motivational note referencing the athlete's long-term goal of qualifying for Nationals.");
+document.getElementById('prompt-btn-checklist').onclick = () => handleVisualPromptClick("Create a printable A4 checklist for a [Sport-specific Session: e.g., Intensification Phase Deadlift Day] powerlifting session. Include a header with fields for Date/Time/Athlete Name. Sections must cover: Pre-workout nutrition/hydration log, Equipment checklist (belt, wrist wraps, chalk, notebook), Step-by-step warm-up (with fillable spaces for weights/reps), Skill work (e.g., deficit deadlifts, with sets/reps/RPE fields), Main Eccentric Strength work (e.g., paused deadlifts), Accessory/Core work, Cool-down/mobility exercises, Video review notes (cues to check), Session KPI (Avg. RPE, Tonnage), and Warning signals (pain location, excessive fatigue). Format clearly with checkboxes and lines for notes.");
+document.getElementById('prompt-btn-recovery').onclick = () => handleVisualPromptClick("Prepare 7 distinct mental micro-routines to improve focus and manage pre-competitive stress for a powerlifter. Include: 1) A pre-workout 60-second breathing exercise (box breathing) followed by a 20-second visualization of a technically perfect lift. 2) A pre-attempt 90-second ritual combining tactical breathing, proprioceptive cues (e.g., tapping the thigh three times), and a performance keyword. 3) A post-session debrief journaling template with 5 specific questions (e.g., 'What was the RPE discrepancy between planned and actual?', 'Where did technique break down on the hardest set?'). Provide word-for-word scripts for each routine and precise timing suggestions for integration into the training week.");
+document.getElementById('prompt-btn-time-saver').onclick = () => handleVisualPromptClick("Create a detailed weekly meal plan for a powerlifter designed to achieve the following daily macro targets: Protein [g], Carbs [g], Fats [g], totaling [kcal] kcal. Provide 7 individual days, each listing meals (Breakfast, Lunch, Pre-Workout, Post-Workout, Dinner) with specific food portions in grams/cups, calculated kcal and macros per meal, and a running daily total. Generate a rationalized, non-redundant weekly shopping list categorized into: Proteins (chicken breast, lean beef, eggs, whey), Carbohydrates (jasmine rice, oats, sweet potatoes), Vegetables (broccoli, spinach, bell peppers), Fats (avocado, olive oil, nuts), and Snacks (Greek yogurt, berries).");
+document.getElementById('prompt-btn-cycle').onclick = () => handleVisualPromptClick("Create 8 direct and motivating message templates (for SMS/email) for coach-athlete accountability in powerlifting. Templates: 1) Pre-workout reminder (sent 90 minutes prior). 2) Post-session check-in (prompting for RPE, notes). 3) Critical week notification (e.g., deload or peak week). 4) Milestone celebration (new 1RM or qualifying total). 5) Mid-week motivation boost. 6) Weekly planning prompt. 7) Nutrition adherence check. 8) Recovery protocol reminder. For each template, maintain a concise, professional, and supportive tone. Also, provide a recommended sending day/time for each message type relative to the athlete's training schedule and time zone.");
+
+// --- QUICK_COMMANDS_END ---
+
+
+document.querySelectorAll('[id^="prompt-btn-"]').forEach(btn => {
+    if (!btn.onclick) {
+        console.warn('[BTN] Button without handler:', btn.id);
+        btn.onclick = () => handleVisualPromptClick("Quick command not yet configured: " + btn.textContent);
+    }
+});
+
+
+            userSelect.addEventListener('change', () => {
+                currentLoadedUserId = userSelect.value;
+                loadChatForUser(userSelect.value);
+            });
+            userSearch.addEventListener('input', renderAndLoadUsers);
+            userSort.addEventListener('change', renderAndLoadUsers);
+
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const msg = messageInput.value.trim();
+                const uid = userSelect.value;
+                if (!msg || !uid) return;
+                addMessage(msg, 'user');
+                messageInput.value = '';
+                messageInput.style.height = '60px'; // Reset height
+                loadingIndicator.classList.remove('hidden');
+                try {
+                    const res = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userId: uid, message: msg })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Error from LLM server.');
+                    addMessage(data.reply, 'ai');
+                } catch(e) { addMessage(`Communication error: ${e.message}`, 'error'); }
+                finally { loadingIndicator.classList.add('hidden'); }
+            });
+
+            async function checkApiStatusAndInit() {
+                const res = await fetch('/api/settings/ai-config');
+                if (res.status === 401) return;
+                const data = await res.json();
+                if (data.configDone) {
+                    apiKeyModal.style.display = 'none';
+                    await fetchUsersAndInit();
+                } else {
+                    apiKeyModal.style.display = 'flex';
+                }
+            }
+
+            function setupWebSocket() {
+                const ws = new WebSocket(`ws://${window.location.host}`);
+                ws.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'heartbeat') ws.send(JSON.stringify({ type: 'heartbeat_ack' }));
+                    } catch(e) {}
+                };
+                ws.onclose = () => {
+                    document.body.innerHTML = '<div style="display:flex; height:100vh; align-items:center; justify-content:center; background:#000; color:#fff;"><h1>Server Disconnected</h1></div>';
+                };
+            }
+
+            checkApiStatusAndInit();
+            setupWebSocket();
+
+            // Fullscreen toggle logic with persistence
+            const fsToggle = document.getElementById('fullscreen-toggle');
+            const updateFS = () => {
+                const isActive = !!document.fullscreenElement;
+                sessionStorage.setItem('fs_persistence', isActive);
+                if (fsToggle) fsToggle.textContent = isActive ? '🗗' : '⛶';
+            };
+
+            if (fsToggle) {
+                fsToggle.addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(e => console.error(e));
+                    } else {
+                        if (document.exitFullscreen) document.exitFullscreen();
+                    }
+                });
+            }
+
+            document.addEventListener('fullscreenchange', updateFS);
+
+            // Auto-reactivation on first interaction (bypasses browser policy)
+            document.body.addEventListener('click', () => {
+                if (sessionStorage.getItem('fs_persistence') === 'true' && !document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                }
+            }, { once: true });
+
+            // Theme toggle logic (Removed from header but kept in JS for potential future use/settings)
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+
+            // Chat input auto-resize (up to 3x)
+            if (messageInput) {
+                messageInput.style.height = '60px'; // Base height
+                messageInput.style.overflowY = 'hidden';
+                messageInput.style.maxHeight = '180px'; // Approx 3x base height
+                
+                messageInput.addEventListener('input', function() {
+                    this.style.height = '60px'; // Temporarily reset to recalculate scrollHeight properly
+                    const newHeight = Math.min(this.scrollHeight, 180);
+                    this.style.height = newHeight + 'px';
+                    this.style.overflowY = (this.scrollHeight > 180) ? 'auto' : 'hidden';
+                });
+            }
+        });
+    </script>
+    <script>
+      // Marked configuration: safe, no external sanitizer
+      marked.setOptions({
+        breaks: true,        // \n → <br>
+        gfm: true,           // GitHub Flavored Markdown
+        headerIds: false,    // No IDs in headers (security)
+        mangle: false
+      });
+    </script>
+</body>
+</html>

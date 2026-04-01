@@ -1,0 +1,164 @@
+/* print.css - Unified and Optimized Version for Paper Saving */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Global settings for all printed pages */
+@page {
+    margin: 1cm;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.3;
+    color: #000 !important; /* Enforced black text as requested */
+    background-color: #fff !important;
+}
+
+h1 {
+    font-size: 20px; 
+    color: #000;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* 
+ * ========= SECTION 1: Style for Chatbot message printing (from index.html) =========
+ */
+.print-content {
+    white-space: normal;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 1.4; 
+}
+
+.print-content strong {
+    font-weight: bold;
+}
+
+/* Markdown specific styles for print */
+.print-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    color: #000 !important;
+}
+.print-content th, .print-content td {
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    text-align: left;
+}
+.print-content th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+.print-content ul, .print-content ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+.print-content li {
+    margin-bottom: 5px;
+}
+
+
+/* 
+ * ========= SECTION 2: Styles for Database Viewer printing (from settings.html) =========
+ */
+.db-cards-container {
+    font-size: 8.5pt; 
+    line-height: 1.25;
+    max-height: none !important;
+    overflow: visible !important;
+    
+    /* KEY MODIFICATION: We replace Grid with column layout, ideal for printing */
+    column-count: 2; /* Two column layout */
+    column-gap: 0;   /* No space between columns */
+}
+
+.db-user-card {
+    page-break-inside: avoid !important; 
+    border: 1px solid #ddd !important;
+    background: #fff !important;
+    color: #000 !important;
+    padding: 0.5rem !important;
+    margin-bottom: 0;
+    /* This rule prevents a card from being split across two columns */
+    -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+            break-inside: avoid;
+}
+
+.db-user-card .card-header {
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.db-section h4 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+    font-size: 1.1em;
+}
+
+.db-section h5 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.db-section dl {
+    gap: 0.3rem 0.8rem;
+}
+
+.db-user-card .card-header, 
+.db-section h4,
+.db-user-card h3, 
+.db-section dt, 
+.db-section dd, 
+.db-section li, 
+.chat-entry p, 
+.chat-entry strong,
+.risk-label {
+    color: #333 !important;
+    border-color: #ddd !important;
+}
+
+.db-section dt {
+    color: #555 !important;
+}
+
+.chat-entry {
+    padding: 0.3rem 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.chat-entry.user, 
+.chat-entry.ai,
+.risk-high,
+.risk-medium,
+.risk-low,
+.risk-unknown {
+    background-color: #f5f5f5 !important;
+    border: 1px solid #ddd;
+    color: #000 !important;
+}
+
+/* 
+ * ========= SECTION 3: Elements to hide during printing (Global) =========
+ * This section remains unchanged, correctly hides the interface.
+ */
+button, 
+.message-actions, 
+nav, 
+header, 
+.main-header, 
+.settings-container, 
+.database-viewer-container > h2,
+.database-viewer-container > p, 
+.db-viewer-controls, 
+.db-viewer-actions {
+    display: none !important;
+}

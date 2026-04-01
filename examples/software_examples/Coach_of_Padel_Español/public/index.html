@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="marked.min.js"></script>
+    <title>Coach_of_Padel_Español - AI Coach</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="print.css" media="print">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div id="api-key-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h2>Welcome to Coach_of_Padel_Español!</h2>
+            <p>Configure your AI engine. You can use Google Gemini, OpenAI, or Local Models.</p>
+            <form id="modal-api-form">
+                <div class="form-group">
+                    <label for="modal-ai-provider">AI Provider</label>
+                    <select id="modal-ai-provider" class="form-control">
+                        <option value="google">Google Gemini</option>
+                        <option value="lmstudio">LM Studio (Local) (Recommended)</option>
+                        <option value="openai">OpenAI (ChatGPT)</option>
+                        <option value="ollama">Ollama (Local)</option>
+                        <option value="custom">Custom (OpenAI Compatible)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modal-api-key">API Key</label>
+                    <input type="password" id="modal-api-key" class="form-control" placeholder="Enter API key (optional for local)...">
+                    <small id="key-help">For LM Studio: leave empty if you haven't set a key.</small>
+                </div>
+                <div class="form-group" id="modal-url-group">
+                    <label for="modal-ai-url">API Base URL</label>
+                    <input type="text" id="modal-ai-url" class="form-control" value="http://localhost:1234/v1">
+                </div>
+                <div class="form-group" id="modal-model-group">
+                    <label for="modal-ai-model">Model ID</label>
+                    <input type="text" id="modal-ai-model" class="form-control" value="qwen3.5-2b">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Save & Start</button>
+            </form>
+            <div id="modal-feedback" class="feedback"></div>
+        </div>
+    </div>
+    
+    <div class="main-layout auth-gated">
+        <div class="left-panel">
+            <header>
+                 <div class="header-content">
+                    <h1>Coach_of_Padel_Español</h1>
+
+                    <nav>
+                         <a href="/dashboard.html" class="btn btn-secondary nav-green">📊</a>
+                         <a href="/clients.html" class="btn btn-secondary nav-red">👥</a>
+                         <a href="/settings.html" class="settings-icon nav-gray" title="API Settings">⚙️</a>
+                         <button class="theme-toggle" id="fullscreen-toggle" title="Schermo Intero">⛶</button>
+                    </nav>
+                 </div>
+            </header>
+             <div class="user-selection-area">
+                <label for="user-select">Select Athlete:</label>
+                <div class="list-controls">
+                    <input type="search" id="user-search" class="form-control" placeholder="Search by name...">
+                    <select id="user-sort" class="form-control">
+                        <option value="alpha-asc">Name (A-Z)</option>
+                        <option value="alpha-desc">Name (Z-A)</option>
+                        <option value="date-desc">Most Recent</option>
+                        <option value="date-asc">Least Recent</option>
+                    </select>
+                </div>
+                <select id="user-select" class="form-control"></select>
+            </div>
+
+            <div id="prompt-editor">
+                <h3>Quick Commands</h3>
+                <div class="prompt-buttons">
+                    <button id="prompt-btn-full" class="prompt-btn">1. Adaptive Session Builder</button>
+                    <button id="prompt-btn-training" class="prompt-btn">2. Session Intensity Randomizer</button>
+                    <button id="prompt-btn-nutrition" class="prompt-btn">3. Progressive Overload Cue</button>
+                    <button id="prompt-btn-plan" class="prompt-btn">4. Short-Term Peaking Block</button>
+                    <button id="prompt-btn-skill" class="prompt-btn">5. Skill Attempt Sequencer</button>
+                    <button id="prompt-btn-weekly-analysis" class="prompt-btn">6. Prehab & Mobility</button>
+                    <button id="prompt-btn-recovery" class="prompt-btn">7. Recovery Strategy</button>
+                    <button id="prompt-btn-time-saver" class="prompt-btn">8. Time-Saver Program</button>
+                    <button id="prompt-btn-mind-body" class="prompt-btn">9. Mind-Body Integration</button>
+                    <button id="prompt-btn-injury" class="prompt-btn">10. Injury Management</button>
+                    <button id="prompt-btn-variation" class="prompt-btn">11. Variations & Alternatives</button>
+                    <button id="prompt-btn-cycle" class="prompt-btn">12. Cycle Optimization</button>
+                    <button id="prompt-btn-pre-event" class="prompt-btn">13. Pre-Event Routine</button>
+                    <button id="prompt-btn-body-comp" class="prompt-btn">14. Body Comp Strategy</button>
+                    <button id="prompt-btn-checklist" class="prompt-btn">15. Daily Checklist</button>
+                </div>
+            </div>
+        </div>
+        <div id="chat-wrapper">
+            <header class="chat-header card" style="border-radius: 0; border-bottom: 1px solid var(--border-color); box-shadow: none;">
+                <div class="header-content">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            C
+                        </div>
+                        <h2 id="chat-title" style="margin: 0;">Coach_of_Padel_Español AI</h2>
+
+                    </div>
+                </div>
+            </header>
+            <div id="chat-container">
+                <div id="chat-box"></div>
+                <div id="loading" class="hidden message ai-message" style="background: transparent !important; box-shadow: none;">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <form id="chat-form">
+                    <textarea id="message-input" placeholder="Ask Coach_of_Padel_Español to create a program..." required></textarea>
+
+                    <button type="submit" title="Send Message">
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const apiKeyModal = document.getElementById('api-key-modal');
+            const modalForm = document.getElementById('modal-api-form');
+            const userSelect = document.getElementById('user-select');
+            const userSearch = document.getElementById('user-search');
+            const userSort = document.getElementById('user-sort');
+            const chatBox = document.getElementById('chat-box');
+            const chatForm = document.getElementById('chat-form');
+            const messageInput = document.getElementById('message-input');
+            const loadingIndicator = document.getElementById('loading');
+            
+            // AI Config Elements
+            const modalProvider = document.getElementById('modal-ai-provider');
+            const modalKey = document.getElementById('modal-api-key');
+            const modalModel = document.getElementById('modal-ai-model');
+            const modalUrl = document.getElementById('modal-ai-url');
+            const modalUrlGroup = document.getElementById('modal-url-group');
+            const keyHelp = document.getElementById('key-help');
+
+            let allUsers = [];
+            let currentLoadedUserId = null;
+
+            const aiPresets = {
+                google: { url: 'https://generativelanguage.googleapis.com/v1beta/openai', model: 'gemini-1.5-flash', help: 'Enter your Google Gemini API key.' },
+                lmstudio: { url: 'http://localhost:1234/v1', model: 'qwen3.5-2b', help: 'Make sure LM Studio is active with the qwen3.5-2b model.' },
+                openai: { url: 'https://api.openai.com/v1', model: 'gpt-4o-mini', help: 'Enter your OpenAI API key (sk-...).' },
+                ollama: { url: 'http://localhost:11434/v1', model: 'qwen2.5-coder:1.5b', help: 'Leave empty if Ollama does not require auth.' },
+                custom: { url: '', model: '', help: 'Enter URL and Key of your custom provider.' }
+            };
+
+            modalProvider.addEventListener('change', () => {
+                const preset = aiPresets[modalProvider.value];
+                modalUrl.value = preset.url;
+                modalModel.value = preset.model;
+                keyHelp.textContent = preset.help;
+                
+                // Show/Hide URL and Model based on provider
+                const needsUrl = (modalProvider.value === 'custom' || modalProvider.value === 'ollama' || modalProvider.value === 'lmstudio');
+                modalUrlGroup.style.display = needsUrl ? 'block' : 'none';
+            });
+
+            function validateApiKey(key, provider) {
+                if (provider === 'google' || provider === 'openai' || provider === 'custom') {
+                    if (!key || key.trim() === '') return { isValid: false, message: 'API key is required for this provider.' };
+                }
+                return { isValid: true };
+            }
+
+            modalForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const feedbackEl = document.getElementById('modal-feedback');
+                const key = modalKey.value.trim();
+                const provider = modalProvider.value;
+                const url = modalUrl.value.trim();
+                const model = modalModel.value.trim();
+
+                const v = validateApiKey(key, provider);
+                if (!v.isValid) {
+                    feedbackEl.textContent = v.message;
+                    feedbackEl.className = 'feedback visible error';
+                    return;
+                }
+
+                feedbackEl.className = 'feedback visible';
+                feedbackEl.textContent = 'Saving...';
+                try {
+                    const res = await fetch('/api/settings/ai-config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ apiKey: key, aiProvider: provider, aiBaseUrl: url, aiModel: model })
+                    });
+                    if (!res.ok) throw new Error('Error during save.');
+                    feedbackEl.textContent = 'Configuration complete!';
+                    feedbackEl.className = 'feedback visible success';
+                    setTimeout(() => location.reload(), 1500);
+                } catch(err) {
+                    feedbackEl.textContent = err.message;
+                    feedbackEl.className = 'feedback visible error';
+                }
+            });
+
+            // Chat & Users Logic
+            function printMessage(content) {
+                const printFrame = document.createElement('iframe');
+                printFrame.style.position = 'absolute';
+                printFrame.style.width = '0';
+                printFrame.style.height = '0';
+                printFrame.style.border = '0';
+                document.body.appendChild(printFrame);
+                const frameDoc = printFrame.contentWindow.document;
+                const userName = userSelect.options[userSelect.selectedIndex]?.text || 'Athlete';
+                const safeHtml = (typeof marked !== 'undefined')
+                  ? marked.parse(content || '')
+                  : (content || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                frameDoc.open();
+                frameDoc.write(`<!DOCTYPE html><html><head><title>Print</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="print.css"></head><body><h1>Program for ${userName}</h1><div class="print-content">${safeHtml}</div></body></html>`);
+                frameDoc.close();
+                setTimeout(() => { printFrame.contentWindow.focus(); printFrame.contentWindow.print(); document.body.removeChild(printFrame); }, 300);
+            }
+
+            function copyMessage(text, btn) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const old = btn.textContent; btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = old, 1500);
+                });
+            }
+
+            function addMessage(text, role) {
+                const sender = (role === 'user') ? 'user' : 'ai';
+                const div = document.createElement('div');
+                div.className = `message ${sender}-message`;
+                if (sender === 'ai') {
+                    const content = document.createElement('div');
+                    const safeHtml = (typeof marked !== 'undefined')
+                      ? marked.parse(text || '')
+                      : (text || '').replace(/\n/g, '<br>');
+                    content.innerHTML = safeHtml;
+                    div.appendChild(content);
+                    const actions = document.createElement('div');
+                    actions.className = 'message-actions';
+                    const cpBtn = document.createElement('button'); cpBtn.textContent = 'Copy'; cpBtn.onclick = () => copyMessage(text, cpBtn);
+                    const prBtn = document.createElement('button'); prBtn.textContent = 'Print'; prBtn.onclick = () => printMessage(text);
+                    actions.appendChild(cpBtn); actions.appendChild(prBtn);
+                    div.appendChild(actions);
+                } else {
+                    const content = document.createElement('div');
+                    const safeHtml = (typeof marked !== 'undefined')
+                      ? marked.parse(text || '')
+                      : (text || '').replace(/\n/g, '<br>');
+                    content.innerHTML = safeHtml;
+                    div.appendChild(content);
+                }
+                chatBox.appendChild(div);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            async function loadChatForUser(userId) {
+                if (!userId) return;
+                loadingIndicator.classList.remove('hidden');
+                chatBox.innerHTML = '';
+                try {
+                    const res = await fetch(`/api/users/${userId}`);
+                    const user = await res.json();
+                    if (user.chatHistory?.length) user.chatHistory.forEach(m => addMessage(m.content, m.role));
+                    else addMessage(`Hi ${user.name}! I'm Coach_of_Padel_Español, how can I help you today?`, 'ai');
+
+                } catch(e) {} finally { loadingIndicator.classList.add('hidden'); }
+            }
+
+            function renderAndLoadUsers() {
+                const search = userSearch.value.toLowerCase();
+                const sortMethod = userSort.value;
+                let filtered = allUsers.filter(u => u.name.toLowerCase().includes(search));
+                
+                // Enhanced Sorting Logic
+                filtered.sort((a, b) => {
+                    switch(sortMethod) {
+                        case 'alpha-asc': return a.name.localeCompare(b.name);
+                        case 'alpha-desc': return b.name.localeCompare(a.name);
+                        case 'date-desc': return (b.createdAt || 0) - (a.createdAt || 0);
+                        case 'date-asc': return (a.createdAt || 0) - (b.createdAt || 0);
+                        default: return 0;
+                    }
+                });
+
+                userSelect.innerHTML = '';
+                filtered.forEach(u => {
+                    const opt = document.createElement('option');
+                    opt.value = u.id;
+                    
+                    // Helper to check for missing check-in
+                    const needsCheckin = (user) => {
+                        const now = new Date();
+                        const lastUpdate = user.riskFactors?.lastUpdate ? new Date(user.riskFactors.lastUpdate) : null;
+                        if (!lastUpdate) return true;
+                        const diffDays = (now - lastUpdate) / (1000 * 60 * 60 * 24);
+                        return diffDays > 7;
+                    };
+
+                    const statusIndicator = needsCheckin(u) ? '🔴 ' : '';
+                    const emoji = u.emoji || '👤';
+                    const risk = u.riskFactors?.riskLevel?.toUpperCase() || 'N/A';
+                    
+                    opt.textContent = `${statusIndicator}${emoji} ${u.name} [${risk}]`;
+                    
+                    // Risk-based coloration (Browser support varies)
+                    const riskLevel = (u.riskFactors?.riskLevel || 'unknown').toLowerCase();
+                    if (riskLevel === 'high') opt.style.color = '#ff4d4d';
+                    else if (riskLevel === 'medium') opt.style.color = '#ffa500';
+                    else if (riskLevel === 'low') opt.style.color = '#4ade80';
+
+                    userSelect.appendChild(opt);
+                });
+
+                if (userSelect.value && userSelect.value !== currentLoadedUserId) {
+                    currentLoadedUserId = userSelect.value;
+                    loadChatForUser(userSelect.value);
+                }
+            }
+
+            async function fetchUsersAndInit() {
+                try {
+                    const res = await fetch('/api/users');
+                    allUsers = await res.json();
+                    renderAndLoadUsers();
+                } catch(e) {}
+            }
+
+            function handleVisualPromptClick(txt) {
+                messageInput.value = txt; messageInput.focus();
+            }
+
+            // Quick Commands Wiring
+            
+const bindPrompt = (id, text) => {
+    const btn = document.getElementById(id);
+    if (btn) btn.onclick = () => handleVisualPromptClick(text);
+};
+
+// --- QUICK_COMMANDS_START ---
+
+document.getElementById('prompt-btn-full').onclick = () => handleVisualPromptClick("Genera una sesión de pádel adaptativa de [DURACIÓN_min] minutos para el objetivo: [OBJETIVO: técnica de fondo/táctica de red/condición física específica/gestión del partido]. Equipamiento disponible: extraer del perfil del jugador. Historial de RPE de la última semana: [valor]. Prioridad técnica de la sesión: [texto]. Proporciona: calentamiento (minutos y ejercicios específicos de movilidad y coordinación), trabajo técnico (ejercicios con feed + series x duración/repeticiones), patrón táctico principal, trabajo complementario (ejercicios de reacción o desplazamiento), temporización de los bloques, y progresión sugerida para las próximas 3 sesiones basada en la evolución del alumno y los KPIs de partido.");
+document.getElementById('prompt-btn-training').onclick = () => handleVisualPromptClick("Para la sesión base descrita: [BREVE DESCRIPCIÓN DE LA SESIÓN], genera 3 variantes (Ligera / Estándar / Shock). Para cada variante indica cambios en volumen (número de drills, duración de los puntos), intensidad (velocidad de feed, complejidad táctica), recuperaciones entre bloques, y RPE esperado. Proporciona reglas claras de decisión para elegir la variante basándose en el RPE promedio de la última semana, la calidad del sueño registrada, y la presencia de fatiga acumulada reportada por el jugador en el cuestionario post-sesión.");
+document.getElementById('prompt-btn-nutrition').onclick = () => handleVisualPromptClick("Sugiere una corrección calórica y prioridades de macronutrientes partiendo de: peso actual, variación de peso semanal [ej. 0.2 kg por semana], peso objetivo, proteína objetivo [ej. 1.8g por kg]. Proporciona un rango de ajuste calórico (+/-), distribución recomendada de macros (proteína, carbohidratos de bajo/medio índice glucémico, grasas saludables), y una lista de verificación de parámetros a monitorizar en las siguientes 2 semanas (peso diario, energía en pista, rendimiento en sprints, niveles de recuperación post-partido, y marcadores de hidratación).");
+document.getElementById('prompt-btn-plan').onclick = () => handleVisualPromptClick("Programa 4 micro-progresiones consecutivas para [HABILIDAD: ej. bandeja de potencia/víbora con efecto] partiendo de una ejecución actual de [nivel de dominio]. Objetivo: mejorar [parámetro: ej. precisión, potencia, efecto] en 4 sesiones. Especifica para cada sesión: ejercicio principal (ej. feed de bandeja desde distintas posiciones), series x duración/repeticiones, modificación de la dificultad (altura de la red, tipo de bola, restricción de zona), RPE objetivo, y señales técnicas para una ejecución perfecta (posición del codo, punto de impacto, rotación de hombros, terminación).");
+document.getElementById('prompt-btn-skill').onclick = () => handleVisualPromptClick("Organiza la secuencia de intentos para el día de test en [HABILIDAD: ej. Efectividad de globo defensivo]: calentamiento detallado (movilidad de hombro, drills de patrón, activación neuromuscular), 5 intentos de rampa con tiempos/objetivos específicos (ej. 60% de éxito en zona, 80%, 95%), recuperación recomendada entre intentos (activa/pasiva), criterios para parar (dolor articular, fallo técnico repetido, RPE >8), y debrief final con métricas a registrar (porcentaje de acierto, fatiga percibida, calidad del sueño previo, nivel de estrés).");
+document.getElementById('prompt-btn-weekly-analysis').onclick = () => handleVisualPromptClick("Genera un informe semanal resumido jugador-entrenador: incluye 1) Resumen de KPIs (Peso, % de grasa (si aplica), Nivel de Estrés laboral, Horas y Calidad de Sueño, Sesiones Completadas, Partidos Jugados), 2) una prioridad técnica para la semana (ej. mejorar la salida del cristal en revés), 3) dos tareas prácticas (ej. movilidad de tobillo 10 min/día, revisión de video de 1 partido), 4) check-in obligatorio (día y hora), y 5) una nota motivacional breve adaptada al estilo comunicativo del jugador (motivacional, técnico o directivo).");
+document.getElementById('prompt-btn-recovery').onclick = () => handleVisualPromptClick("Genera un protocolo diario de prehabilitación y movilidad de [DURACIÓN_min] minutos para [ZONA: muñecas/codos/hombros/rodillas], duración del plan: [7/14] días, nivel: [principiante/intermedio/avanzado]. Para cada día indica ejercicios (con progresión semanal), repeticiones/tiempo, y señales claras para detener el ejercicio (dolor agudo, pérdida de rango articular, fatiga extrema). Incluye ejercicios de movilidad activa, fortalecimiento excéntrico y control motor específicos para las demandas del pádel.");
+document.getElementById('prompt-btn-time-saver').onclick = () => handleVisualPromptClick("Crea un diagrama de flujo textual para el manejo del dolor agudo en [LOCALIZACIÓN: ej. codo de tenista] con intensidad percibida [1-10], inicio [agudo/insidioso], presencia de hinchazón [S/N]. Proporciona pasos inmediatos (parar/modificar el golpeo), criterios para deload (reducción del 50% de volumen) vs. consulta médica (dolor nocturno, pérdida de fuerza), acciones conservadoras (crioterapia, movilidad suave, vendaje), y criterios para volver al entrenamiento (dolor <2/10, rango completo sin molestia, test de fuerza negativo).");
+document.getElementById('prompt-btn-mind-body').onclick = () => handleVisualPromptClick("Prepara 7 micro-rutinas mentales para mejorar el enfoque y gestión del estrés: incluye 1) pre-entrenamiento: 60s de respiración diafragmática (4-7-8) + 20s de visualización de un patrón táctico exitoso, 2) pre-saque en partido: ritual de 90s con chequeo postural y palabra clave, 3) post-sesión: diario de 5 preguntas (¿Qué patrón funcionó? ¿Qué error fue más costoso? ¿Cómo fue mi energía? ¿Cuál fue mi RPE? ¿Qué ajuste haré mañana?). Proporciona guiones palabra por palabra y sugerencias de timing.");
+document.getElementById('prompt-btn-injury').onclick = () => handleVisualPromptClick("Crea una biblioteca de progresión mínima para el equipamiento: [extraer equipamiento disponible del perfil: pista, cesta de bolas, conos, etc.]. Para cada ejercicio clave ([saque potente y bandeja de definición]) proporciona 5 pasos de progresión y 2 regresiones seguras, con criterios para avanzar (dominio técnico, RPE <7) y RPE objetivo para cada paso. Incluye variaciones de feed, restricciones espaciales y modificaciones de la bola para simular presión competitiva.");
+document.getElementById('prompt-btn-variation').onclick = () => handleVisualPromptClick("Escribe un guion de preparación mental de [DURACIÓN_s: ej. 75] segundos para el previo a un punto crucial en [SITUACIÓN: ej. pelota de break en contra], intención: [calma/motivación/concentración]. Incluye: patrón respiratorio (timing específico), 3 señales motoras específicas (ej. 'pies activos', 'codo alto', 'mirada en la bola'), una frase motivacional para repetir (ej. 'Construye el punto'), e instrucciones sobre postura/preparación física (tensión en core, balance corporal).");
+document.getElementById('prompt-btn-cycle').onclick = () => handleVisualPromptClick("Prepara un bloque de puesta a punto de [Días: 7-10] días para maximizar el rendimiento en el test [TEST: ej. partido de ranking o torneo] con fecha de test [FECHA]. Incluye tapering (reducción progresiva de volumen y complejidad táctica), programación diaria (intensidad, descanso activo, sesiones técnicas cortas), estrategia nutricional 48h pre-test (carga de glucógeno, hidratación, timing de comidas), y plan de recuperación post-test (protocolo de inmersión, nutrición post-partido, días de descanso activo).");
+document.getElementById('prompt-btn-pre-event').onclick = () => handleVisualPromptClick("Crea una lista de verificación en formato A4 para la sesión de [Tipo de Sesión: técnica/táctica/física]. Incluye: encabezado con fecha/hora, pre-entreno (comida, hidratación), equipamiento (pala, pelotas, etc.), calentamiento paso a paso (movilidad, drills progresivos), trabajo técnico, fuerza excéntrica (para hombro y pierna), trabajo de core, vuelta a la calma, revisión de video (si aplica), KPIs a registrar (RPE, errores no forzados), y señales de alarma (dolor articular, fatiga extrema). Deja espacios rellenables para tiempos/notas. Formato claro para imprimir.");
+document.getElementById('prompt-btn-body-comp').onclick = () => handleVisualPromptClick("Crea un plan de comidas semanal para alcanzar los objetivos de macros. Proporciona 7 días con porciones, valores de kcal/macros por comida (desayuno, almuerzo, comida, merienda, cena), y una lista de compra semanal racionalizada (proteínas: pollo, pescado, huevos; carbohidratos: arroz, quinoa, boniato; verduras: brócoli, pimiento, espinacas; grasas: aguacate, frutos secos; snacks: yogur griego, fruta). Adecúa el timing de las comidas a los horarios de entrenamiento y partidos.");
+document.getElementById('prompt-btn-checklist').onclick = () => handleVisualPromptClick("Crea 8 plantillas de mensaje (SMS/email) para responsabilidad: 1) recordatorio pre-entrenamiento (incluir objetivo de la sesión), 2) check-in post-sesión (preguntar por RPE y aprendizaje clave), 3) semana crítica (deload, recordatorio de descanso), 4) celebración de hito (mejora de ranking, dominio de un golpe). Mantén un tono directo y motivador. También proporciona horarios recomendados de envío (ej. 1h antes del entrenamiento, 2h después del partido, lunes por la mañana para la planificación semanal).");
+
+// --- QUICK_COMMANDS_END ---
+
+
+document.querySelectorAll('[id^="prompt-btn-"]').forEach(btn => {
+    if (!btn.onclick) {
+        console.warn('[BTN] Button without handler:', btn.id);
+        btn.onclick = () => handleVisualPromptClick("Quick command not yet configured: " + btn.textContent);
+    }
+});
+
+
+            userSelect.addEventListener('change', () => {
+                currentLoadedUserId = userSelect.value;
+                loadChatForUser(userSelect.value);
+            });
+            userSearch.addEventListener('input', renderAndLoadUsers);
+            userSort.addEventListener('change', renderAndLoadUsers);
+
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const msg = messageInput.value.trim();
+                const uid = userSelect.value;
+                if (!msg || !uid) return;
+                addMessage(msg, 'user');
+                messageInput.value = '';
+                messageInput.style.height = '60px'; // Reset height
+                loadingIndicator.classList.remove('hidden');
+                try {
+                    const res = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userId: uid, message: msg })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Error from LLM server.');
+                    addMessage(data.reply, 'ai');
+                } catch(e) { addMessage(`Communication error: ${e.message}`, 'error'); }
+                finally { loadingIndicator.classList.add('hidden'); }
+            });
+
+            async function checkApiStatusAndInit() {
+                const res = await fetch('/api/settings/ai-config');
+                if (res.status === 401) return;
+                const data = await res.json();
+                if (data.configDone) {
+                    apiKeyModal.style.display = 'none';
+                    await fetchUsersAndInit();
+                } else {
+                    apiKeyModal.style.display = 'flex';
+                }
+            }
+
+            function setupWebSocket() {
+                const ws = new WebSocket(`ws://${window.location.host}`);
+                ws.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'heartbeat') ws.send(JSON.stringify({ type: 'heartbeat_ack' }));
+                    } catch(e) {}
+                };
+                ws.onclose = () => {
+                    document.body.innerHTML = '<div style="display:flex; height:100vh; align-items:center; justify-content:center; background:#000; color:#fff;"><h1>Server Disconnected</h1></div>';
+                };
+            }
+
+            checkApiStatusAndInit();
+            setupWebSocket();
+
+            // Fullscreen toggle logic with persistence
+            const fsToggle = document.getElementById('fullscreen-toggle');
+            const updateFS = () => {
+                const isActive = !!document.fullscreenElement;
+                sessionStorage.setItem('fs_persistence', isActive);
+                if (fsToggle) fsToggle.textContent = isActive ? '🗗' : '⛶';
+            };
+
+            if (fsToggle) {
+                fsToggle.addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(e => console.error(e));
+                    } else {
+                        if (document.exitFullscreen) document.exitFullscreen();
+                    }
+                });
+            }
+
+            document.addEventListener('fullscreenchange', updateFS);
+
+            // Auto-reactivation on first interaction (bypasses browser policy)
+            document.body.addEventListener('click', () => {
+                if (sessionStorage.getItem('fs_persistence') === 'true' && !document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                }
+            }, { once: true });
+
+            // Theme toggle logic (Removed from header but kept in JS for potential future use/settings)
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+
+            // Chat input auto-resize (up to 3x)
+            if (messageInput) {
+                messageInput.style.height = '60px'; // Base height
+                messageInput.style.overflowY = 'hidden';
+                messageInput.style.maxHeight = '180px'; // Approx 3x base height
+                
+                messageInput.addEventListener('input', function() {
+                    this.style.height = '60px'; // Temporarily reset to recalculate scrollHeight properly
+                    const newHeight = Math.min(this.scrollHeight, 180);
+                    this.style.height = newHeight + 'px';
+                    this.style.overflowY = (this.scrollHeight > 180) ? 'auto' : 'hidden';
+                });
+            }
+        });
+    </script>
+    <script>
+      // Marked configuration: safe, no external sanitizer
+      marked.setOptions({
+        breaks: true,        // \n → <br>
+        gfm: true,           // GitHub Flavored Markdown
+        headerIds: false,    // No IDs in headers (security)
+        mangle: false
+      });
+    </script>
+</body>
+</html>

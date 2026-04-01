@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="CaliCoach1.0_LANG">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Settings</h1>
+        <nav>
+            <a href="/dashboard.html" class="btn btn-secondary nav-green">📊</a>
+            <a href="/clients.html" class="btn btn-secondary nav-red">👥</a>
+            <a href="/" class="btn btn-secondary nav-blue">💬</a>
+            <div class="settings-header-buttons">
+                <button id="theme-toggle" class="theme-toggle" title="Toggle Light/Dark Mode" style="margin-right: 0.5rem;">🌙</button>
+                <button class="theme-toggle" id="fullscreen-toggle" title="Schermo Intero">⛶</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <h2>Auth Settings (Local Level)</h2>
+        <div id="add-user-modal" style="display: none; background: var(--bg-main); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); max-width: 400px; margin-bottom: 30px;">
+            <h3>Register New Local Account</h3>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="new-username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="new-password" class="form-control" required>
+            </div>
+            <button id="submit-new-user" class="btn">Create Account</button>
+            <div id="new-user-feedback" class="feedback"></div>
+        </div>
+
+        <h2>AI Configuration (Agnostic)</h2>
+        <p>Configure your preferred AI provider. You can use Cloud services or Local models (Ollama/LM Studio).</p>
+        <form id="settings-ai-form" class="settings-card">
+            <div class="form-group">
+                <label for="ai-provider">AI Provider</label>
+                <select id="ai-provider" class="form-control">
+                    <option value="google">Google Gemini</option>
+                    <option value="lmstudio">LM Studio (Local) (Recommended)</option>
+                    <option value="openai">OpenAI (ChatGPT)</option>
+                    <option value="anthropic">Anthropic (Claude)</option>
+                    <option value="deepseek">DeepSeek</option>
+                    <option value="qwen">Qwen (Alibaba)</option>
+                    <option value="ollama">Ollama (Local)</option>
+                    <option value="custom">Custom (OpenAI Compatible)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ai-base-url">API Base URL</label>
+                <input type="text" id="ai-base-url" class="form-control" placeholder="http://localhost:1234/v1">
+            </div>
+            <div class="form-group">
+                <label for="ai-model">Model (Model ID)</label>
+                <input type="text" id="ai-model" class="form-control" placeholder="qwen3.5-2b">
+            </div>
+            <div class="form-group">
+                <label for="ai-api-key">API Key</label>
+                <input type="password" id="ai-api-key" class="form-control" placeholder="Enter your API Key...">
+                <small>Leave empty for local providers without authentication.</small>
+            </div>
+            <div class="button-group" style="display: flex; gap: 10px; margin-top: 15px;">
+                <button type="submit" class="btn">Save Configuration</button>
+                <button type="button" id="test-ai-btn" class="btn btn-secondary">Test Connection</button>
+            </div>
+        </form>
+        <div id="settings-feedback" class="feedback"></div>
+
+        <div class="database-viewer-container" style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+            <h2>Database Viewer (database.json)</h2>
+            <p>View, filter and sort the raw application data. Useful for debugging and in-depth analysis.</p>
+            
+            <div class="db-viewer-controls">
+                <div class="form-group">
+                    <label for="db-sort">Sort Clients by:</label>
+                    <select id="db-sort" class="form-control">
+                        <option value="default">Original Order</option>
+                        <option value="alpha-asc">Name (A-Z)</option>
+                        <option value="alpha-desc">Name (Z-A)</option>
+                        <option value="date-desc">Most Recent</option>
+                        <option value="date-asc">Least Recent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="db-client-search">Filter by Client:</label>
+                    <div class="filter-controls">
+                        <input type="search" id="db-client-search" class="form-control" placeholder="Search by name...">
+                        <button id="db-clear-filter-btn" class="btn btn-secondary btn-small">Deselect All</button>
+                    </div>
+                    <div id="db-client-checklist" class="client-checklist">
+                        <!-- I clienti con checkbox verranno inseriti qui da JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="db-content-wrapper">
+                 <!-- La tabella o il JSON verranno renderizzati qui -->
+            </div>
+
+            <div class="db-viewer-actions" style="margin-top: 20px;">
+                <button id="copy-db-btn" class="btn btn-secondary">Copy Filtered Data (JSON)</button>
+                <button id="print-db-btn" class="btn btn-secondary">Print Current View</button>
+            </div>
+        </div>
+
+        <!-- Section 5: Global Actions (Relocated) -->
+        <div class="settings-footer" style="margin-top: 50px; padding-top: 20px; border-top: 2px solid var(--border-color); display: flex; gap: 1rem; justify-content: flex-start;">
+            <button id="logout-btn" class="btn" style="background-color: #dc3545 !important; border-color: #dc3545 !important; color: white !important; font-size: 0.85rem; padding: 8px 20px;">Secure Logout</button>
+            <button id="add-user-btn" class="btn" style="background-color: var(--accent-primary) !important; font-size: 0.85rem; padding: 8px 20px;">Register New User (Admin)</button>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Sezione Visualizzatore DB (Elementi e Logica) ---
+            const dbSortEl = document.getElementById('db-sort');
+            const dbClientSearchEl = document.getElementById('db-client-search');
+            const dbClientChecklistEl = document.getElementById('db-client-checklist');
+            const dbClearFilterBtn = document.getElementById('db-clear-filter-btn');
+            const dbContentWrapper = document.getElementById('db-content-wrapper');
+            const copyDbBtn = document.getElementById('copy-db-btn');
+            const printDbBtn = document.getElementById('print-db-btn');
+            let fullDbData = null;
+            let currentFilteredData = null;
+
+            const formatDate = (timestamp) => timestamp ? new Date(timestamp).toLocaleString('it-IT') : 'N/A';
+
+            function getFilteredData() {
+                if (!fullDbData) return null;
+                let viewData = JSON.parse(JSON.stringify(fullDbData));
+                const selectedClientIds = Array.from(dbClientChecklistEl.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+                if (selectedClientIds.length > 0) {
+                    viewData.users = viewData.users.filter(user => selectedClientIds.includes(user.id));
+                }
+                const sortMethod = dbSortEl.value;
+                if (sortMethod !== 'default') {
+                    viewData.users.sort((a, b) => {
+                        switch(sortMethod) {
+                            case 'alpha-asc': return a.name.localeCompare(b.name);
+                            case 'alpha-desc': return b.name.localeCompare(a.name);
+                            case 'date-desc': return (b.createdAt || 0) - (a.createdAt || 0);
+                            case 'date-asc': return (a.createdAt || 0) - (b.createdAt || 0);
+                            default: return 0;
+                        }
+                    });
+                }
+                return viewData;
+            }
+
+            function renderDatabaseView() {
+                currentFilteredData = getFilteredData();
+                if (!currentFilteredData || !currentFilteredData.users || !currentFilteredData.users.length) {
+                    const selectedCount = dbClientChecklistEl.querySelectorAll('input:checked').length;
+                    dbContentWrapper.innerHTML = `<p class="no-alerts">${selectedCount > 0 ? 'No clients match the selected filters.' : 'Select one or more clients to view details.'}</p>`;
+                    dbContentWrapper.dataset.copyContent = JSON.stringify({ ...currentFilteredData, users: [] }, null, 2);
+                    return;
+                }
+
+                const cardsHTML = currentFilteredData.users.map(user => {
+                    const profileHTML = Object.entries(user.profile || {}).map(([key, value]) => `
+                        <dt>${key.replace(/_/g, ' ')}</dt>
+                        <dd>${value || '<em>Not specified</em>'}</dd>
+                    `).join('');
+                    const weightHistoryHTML = (user.progressData?.weightHistory || []).slice(-5).reverse().map(entry => `
+                        <li>${new Date(entry.date).toLocaleDateString('it-IT')}: <strong>${entry.weight} kg</strong> / ${entry.bodyFat || 'N/A'}% BF</li>
+                    `).join('');
+                    const adherenceHistoryHTML = (user.progressData?.adherenceHistory || []).slice(-5).reverse().map(entry => `
+                        <li>${entry.week}: <strong>${entry.workouts_completed}/${entry.workouts_planned}</strong> workouts | Stress: ${entry.stressLevel}/10 | Sleep: ${entry.sleepHours}h</li>
+                    `).join('');
+                    const chatHistoryHTML = (user.chatHistory || []).slice(-10).map(msg => `
+                        <div class="chat-entry ${msg.role === 'assistant' ? 'ai' : 'user'}">
+                            <strong>${msg.role === 'user' ? user.name : 'AI'}:</strong>
+                            <p>${msg.content.substring(0, 500)}${msg.content.length > 500 ? '...' : ''}</p>
+                        </div>
+                    `).join('');
+                    const riskFactorsHTML = Object.entries(user.riskFactors || {}).map(([key, value]) => {
+                        let displayValue = value;
+                        if (key === 'lastUpdate' && value) displayValue = formatDate(value);
+                        else if (typeof value === 'number' && value < 1 && value > 0) displayValue = `${(value * 100).toFixed(1)}%`;
+                        else if (value === null) displayValue = '<em>N/A</em>';
+                        return `<dt>${key}</dt><dd>${displayValue}</dd>`;
+                    }).join('');
+                    return `
+                        <div class="db-user-card" style="background: var(--bg-container); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                            <div class="card-header" style="border-bottom: 2px solid var(--accent-primary); padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                               <h2 style="margin:0; font-size: 1.5rem; color: var(--accent-primary);">${user.name}</h2>
+                               <span class="risk-label risk-${(user.riskFactors?.riskLevel || 'unknown').toLowerCase()}">${user.riskFactors?.riskLevel || 'N/A'}</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="db-section">
+                                    <h4>Profile & Background</h4>
+                                    <dl>${profileHTML}</dl>
+                                    <h4 style="margin-top:20px">Historical Weight</h4>
+                                    <ul>${weightHistoryHTML || '<li>No data.</li>'}</ul>
+                                </div>
+                                <div class="db-section">
+                                    <h4>Risk Factors</h4>
+                                    <dl>${riskFactorsHTML}</dl>
+                                </div>
+                                <div class="db-section">
+                                    <h4>Recent Chat History</h4>
+                                    <div class="chat-history-preview">${chatHistoryHTML || '<p>No chat history available.</p>'}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                dbContentWrapper.innerHTML = `<div class="db-cards-container">${cardsHTML}</div>`;
+                dbContentWrapper.dataset.copyContent = JSON.stringify(currentFilteredData, null, 2);
+            }
+
+            async function initializeDatabaseViewer() {
+                try {
+                    const token = localStorage.getItem('token');
+                    const response = await fetch('/api/database', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (!response.ok) throw new Error(`Server error: ${response.statusText}`);
+                    fullDbData = await response.json();
+                    
+                    dbClientChecklistEl.innerHTML = '';
+                    if (fullDbData.users && fullDbData.users.length > 0) {
+                        fullDbData.users.sort((a,b) => a.name.localeCompare(b.name)).forEach(user => {
+                            const item = document.createElement('div');
+                            item.className = 'checklist-item';
+                            item.innerHTML = `
+                                <input type="checkbox" id="user-cb-${user.id}" value="${user.id}">
+                                <label for="user-cb-${user.id}">${user.name}</label>
+                            `;
+                            dbClientChecklistEl.appendChild(item);
+                        });
+                    } else {
+                        dbClientChecklistEl.innerHTML = '<p class="no-alerts">No users in database.</p>';
+                    }
+                    renderDatabaseView();
+                } catch (error) {
+                    dbContentWrapper.innerHTML = `<p class="no-alerts" style="color:var(--accent-danger);">Unable to load database: ${error.message}</p>`;
+                }
+            }
+
+            dbSortEl.addEventListener('change', renderDatabaseView);
+            dbClientChecklistEl.addEventListener('change', renderDatabaseView);
+
+            dbClientSearchEl.addEventListener('input', () => {
+                const searchTerm = dbClientSearchEl.value.toLowerCase();
+                const items = dbClientChecklistEl.querySelectorAll('.checklist-item');
+                items.forEach(item => {
+                    const label = item.querySelector('label').textContent.toLowerCase();
+                    item.style.display = label.includes(searchTerm) ? 'flex' : 'none';
+                });
+            });
+
+            dbClearFilterBtn.addEventListener('click', () => {
+                dbClientSearchEl.value = '';
+                dbClientChecklistEl.querySelectorAll('input:checked').forEach(cb => cb.checked = false);
+                dbClientSearchEl.dispatchEvent(new Event('input'));
+                renderDatabaseView();
+            });
+            
+            copyDbBtn.addEventListener('click', () => {
+                const contentToCopy = dbContentWrapper.dataset.copyContent;
+                if (!contentToCopy) return;
+                navigator.clipboard.writeText(contentToCopy).then(() => {
+                    const originalText = copyDbBtn.textContent;
+                    copyDbBtn.textContent = 'Copied!';
+                    setTimeout(() => { copyDbBtn.textContent = originalText; }, 2000);
+                });
+            });
+
+            printDbBtn.addEventListener('click', () => {
+                const contentToPrint = dbContentWrapper.innerHTML;
+                const printFrame = document.createElement('iframe');
+                printFrame.style.position = 'absolute'; printFrame.style.width = '0'; printFrame.style.height = '0'; printFrame.style.border = '0';
+                document.body.appendChild(printFrame);
+                const frameDoc = printFrame.contentWindow.document;
+                frameDoc.open();
+                frameDoc.write(`<!DOCTYPE html><html lang="it"><title>Print Database</title><link rel="stylesheet" href="style.css"></head><body><h1>Client Database View</h1>${contentToPrint}</body></html>`);
+                frameDoc.close();
+                setTimeout(() => {
+                    printFrame.contentWindow.focus();
+                    printFrame.contentWindow.print();
+                    document.body.removeChild(printFrame);
+                }, 300);
+            });
+
+            initializeDatabaseViewer();
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                if (window.logoutUser) window.logoutUser();
+            });
+
+            const addUserBtn = document.getElementById('add-user-btn');
+            const addUserModal = document.getElementById('add-user-modal');
+            addUserBtn.addEventListener('click', () => {
+                addUserModal.style.display = addUserModal.style.display === 'none' ? 'block' : 'none';
+            });
+
+            document.getElementById('submit-new-user').addEventListener('click', async () => {
+                const username = document.getElementById('new-username').value;
+                const password = document.getElementById('new-password').value;
+                const feedback = document.getElementById('new-user-feedback');
+                feedback.className = 'feedback visible';
+                feedback.textContent = 'Creating...';
+
+                try {
+                    const res = await fetch('/api/auth/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error);
+                    
+                    feedback.className = 'feedback visible success';
+                    feedback.textContent = 'User created successfully. They can now log in.';
+                    setTimeout(() => { addUserModal.style.display = 'none'; }, 2000);
+                } catch (e) {
+                    feedback.className = 'feedback visible error';
+                    feedback.textContent = e.message;
+                }
+            });
+
+            const aiForm = document.getElementById('settings-ai-form');
+            const aiProvider = document.getElementById('ai-provider');
+            const aiBaseUrl = document.getElementById('ai-base-url');
+            const aiModel = document.getElementById('ai-model');
+            const aiApiKey = document.getElementById('ai-api-key');
+            const feedback = document.getElementById('settings-feedback');
+            const testAiBtn = document.getElementById('test-ai-btn');
+
+            const aiPresets = {
+                google: { url: 'https://generativelanguage.googleapis.com/v1beta/openai', model: 'gemini-1.5-flash' },
+                lmstudio: { url: 'http://localhost:1234/v1', model: 'qwen3.5-2b' },
+                openai: { url: 'https://api.openai.com/v1', model: 'gpt-4o-mini' },
+                anthropic: { url: 'https://api.anthropic.com/v1', model: 'claude-3-5-sonnet-20241022' },
+                deepseek: { url: 'https://api.deepseek.com', model: 'deepseek-chat' },
+                qwen: { url: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen-plus' },
+                ollama: { url: 'http://localhost:11434/v1', model: 'qwen2.5-coder:1.5b' },
+                custom: { url: '', model: '' }
+            };
+
+            async function loadAiConfig() {
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch('/api/settings/ai-config', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    const config = await res.json();
+                    aiProvider.value = config.aiProvider || 'openai';
+                    aiBaseUrl.value = config.aiBaseUrl || '';
+                    aiModel.value = config.aiModel || '';
+                    aiApiKey.value = config.apiKey || '';
+                } catch (e) {
+                    console.error('Error loading AI config:', e);
+                }
+            }
+
+            aiProvider.addEventListener('change', () => {
+                const preset = aiPresets[aiProvider.value];
+                if (preset) {
+                    if (preset.url) aiBaseUrl.value = preset.url;
+                    if (preset.model) aiModel.value = preset.model;
+                }
+            });
+
+            aiForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                feedback.className = 'feedback visible';
+                feedback.textContent = 'Saving...';
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch('/api/settings/ai-config', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            aiProvider: aiProvider.value,
+                            aiBaseUrl: aiBaseUrl.value,
+                            aiModel: aiModel.value,
+                            apiKey: aiApiKey.value
+                        })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error);
+                    feedback.className = 'feedback visible success';
+                    feedback.textContent = 'Configuration saved successfully.';
+                } catch (e) {
+                    feedback.className = 'feedback visible error';
+                    feedback.textContent = e.message;
+                }
+            });
+
+            testAiBtn.addEventListener('click', async () => {
+                feedback.className = 'feedback visible';
+                feedback.textContent = 'Testing...';
+                try {
+                    const res = await fetch('/api/settings/test-ai', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            aiProvider: aiProvider.value,
+                            aiBaseUrl: aiBaseUrl.value,
+                            aiModel: aiModel.value,
+                            apiKey: aiApiKey.value
+                        })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Error during test.');
+                    
+                    feedback.className = 'feedback visible success';
+                    feedback.textContent = data.message;
+                } catch (e) {
+                    feedback.className = 'feedback visible error';
+                    feedback.textContent = 'Test failed: ' + e.message;
+                }
+            });
+
+            loadAiConfig();
+
+            // Fullscreen toggle logic with persistence
+            const fsToggle = document.getElementById('fullscreen-toggle');
+            const updateFS = () => {
+                const isActive = !!document.fullscreenElement;
+                sessionStorage.setItem('fs_persistence', isActive);
+                if (fsToggle) fsToggle.textContent = isActive ? '🗗' : '⛶';
+            };
+
+            if (fsToggle) {
+                fsToggle.addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(e => console.error(e));
+                    } else {
+                        if (document.exitFullscreen) document.exitFullscreen();
+                    }
+                });
+            }
+
+            document.addEventListener('fullscreenchange', updateFS);
+
+            // Auto-reactivation on first interaction (bypasses browser policy)
+            document.body.addEventListener('click', () => {
+                if (sessionStorage.getItem('fs_persistence') === 'true' && !document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                }
+            }, { once: true });
+
+            // Theme check (No toggle, only check localStorage)
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+            // Theme toggle logic
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            const updateThemeIcon = (isLight) => {
+                if (themeToggle) themeToggle.textContent = isLight ? '☀️' : '🌙';
+            };
+
+            if (localStorage.getItem('theme') === 'light') {
+                body.classList.add('light-mode');
+                updateThemeIcon(true);
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const isLight = body.classList.toggle('light-mode');
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                    updateThemeIcon(isLight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

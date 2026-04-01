@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaOpenCoach — Dashboard Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="chart.min.js"></script>
+    <script src="auth.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>Dashboard Analytics</h1>
+        <nav>
+            <a href="/clients.html" class="btn btn-secondary nav-red">👥</a>
+            <a href="/" class="btn btn-secondary nav-blue">💬</a>
+            <a href="/settings.html" class="settings-icon nav-gray" title="API Settings">⚙️</a>
+            <button class="theme-toggle" id="fullscreen-toggle" title="Schermo Intero">⛶</button>
+        </nav>
+    </header>
+
+    <div class="dashboard-container auth-gated">
+        <div id="dashboard-error" class="feedback error" style="display: none; margin-bottom: 1rem;"></div>
+        <!-- Section 1: General Metrics -->
+        <div class="metrics-overview">
+            <div id="metric-total-clients" class="metric-card" title="Total number of clients registered in the system.">
+                <h3>Total Clients</h3>
+                <span class="big-number">--</span>
+            </div>
+            <div id="metric-active-clients" class="metric-card" title="Clients considered active (not at high risk) out of the total.">
+                <h3>Active Clients</h3>
+                <span class="big-number">--</span>
+            </div>
+            <div id="metric-adherence" class="metric-card" title="Average percentage of adherence to planned workouts, calculated across all clients.">
+                <h3>Average Adherence</h3>
+                <span class="big-number">--%</span>
+            </div>
+            <div id="metric-churn" class="metric-card" title="Percentage of clients currently classified with a high churn risk.">
+                <h3>Risk Rate</h3>
+                <span class="big-number">--%</span>
+            </div>
+        </div>
+
+        <!-- Section 2: Progress Charts -->
+        <div class="dashboard-grid">
+            <div class="chart-container">
+                <h3>Overall Adherence Trend (Last 26 Weeks)</h3>
+                <canvas id="adherenceChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Client Risk Distribution</h3>
+                <canvas id="riskDistributionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Section 3: At-Risk Client Alerts -->
+        <div class="risk-alerts">
+            <h2>Clients with High Churn Risk</h2>
+            <div id="risk-alerts-container" class="risk-alerts-grid">
+                <p class="no-alerts">No at-risk client data.</p>
+            </div>
+        <!-- Section 4: Clients Missing Weekly Check-in -->
+        <div class="risk-alerts">
+            <h2>Clients with Missing Weekly Check-in</h2>
+            <div id="inactive-clients-container" class="risk-alerts-grid">
+                <p class="no-alerts">No data on inactive clients.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const charts = {};
+
+        const noDataPlugin = {
+            id: 'noData',
+            afterDraw: (chart) => {
+                if (chart.data.datasets.every(ds => ds.data.length === 0)) {
+                    const { ctx, chartArea: { left, top, right, bottom } } = chart;
+                    ctx.save();
+                    ctx.font = '16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+                    ctx.fillStyle = '#AAAAAA';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('Data not available', (left + right) / 2, (top + bottom) / 2);
+                    ctx.restore();
+                }
+            }
+        };
+
+        function formatPercentage(value) {
+            if (typeof value !== 'number' || isNaN(value)) return '--';
+            return `${(value * 100).toFixed(0)}`;
+        }
+
+        function getCommonChartOptions() {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#E0E0E0', font: { size: 14 } }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#FFFFFF',
+                        bodyColor: '#DDDDDD',
+                        padding: 10,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== undefined) {
+                                     label += `${context.parsed.y.toFixed(1)}%`;
+                                } else if (context.parsed !== null) {
+                                     label += `${context.parsed} clients`;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+        }
+        async function updateDashboard() {
+    const errorEl = document.getElementById('dashboard-error');
+    errorEl.style.display = 'none';
+
+    try {
+        const response = await fetch('/api/analytics/dashboard');
+        if (response.status === 401) return; // auth.js will handle modal
+        if (!response.ok) throw new Error(`HTTP Error ${response.status}: Unable to load data.`);
+        const data = await response.json();
+        
+        // Update metrics (existing logic)
+        const metrics = data.globalMetrics || {};
+        document.querySelector('#metric-total-clients .big-number').textContent = metrics.totalClients || 0;
+        document.querySelector('#metric-active-clients .big-number').textContent = `${metrics.activeClients || 0}/${metrics.totalClients || 0}`;
+        document.querySelector('#metric-adherence .big-number').textContent = `${formatPercentage(metrics.averageAdherence)}%`;
+        document.querySelector('#metric-churn .big-number').textContent = `${formatPercentage(metrics.churnRate)}%`;
+
+        // Update at-risk clients (existing logic)
+        const riskContainer = document.getElementById('risk-alerts-container');
+        riskContainer.innerHTML = '';
+        if (data.atRiskClients && data.atRiskClients.length > 0) {
+            data.atRiskClients.forEach(client => {
+                const card = document.createElement('div');
+                card.className = `alert-card ${client.riskFactors.riskLevel}-risk`;
+                card.innerHTML = `
+                    <h4>${client.name}</h4>
+                    <p>Risk: <strong>${client.riskFactors.riskLevel.toUpperCase()}</strong></p>
+                    <p>Adherence: ${formatPercentage(client.riskFactors.adherenceScore)}%</p>
+                    <p>Prediction: ${client.riskFactors.predictedChurnDate || 'N/A'}</p>
+                    <a href="/clients.html?clientId=${client.id}" class="btn btn-secondary btn-small">View Profile</a>
+                `; // Added ?clientId=${client.id} link for direct navigation
+                riskContainer.appendChild(card);
+            });
+        } else {
+            riskContainer.innerHTML = `<p class="no-alerts">No clients currently at high risk. Great job!</p>`;
+        }
+
+        // Update clients missing check-in
+        const inactiveContainer = document.getElementById('inactive-clients-container');
+        inactiveContainer.innerHTML = '';
+        if (data.clientsMissingCheckin && data.clientsMissingCheckin.length > 0) {
+            data.clientsMissingCheckin.forEach(client => {
+                const card = document.createElement('div');
+                card.className = 'alert-card checkin-warning';
+                card.innerHTML = `
+                    <h4>${client.name}</h4>
+                    <p>Status: <strong>Check-in not received</strong></p>
+                    <p>Weekly data needs to be entered.</p>
+                    <br>
+                    <a href="/clients.html?clientId=${client.id}" class="btn btn-secondary btn-small">Update Client</a>
+                `; // Added ?clientId=${client.id} link for direct navigation
+                inactiveContainer.appendChild(card);
+            });
+        } else {
+            inactiveContainer.innerHTML = `<p class="no-alerts">All clients are updated for this week. Excellent!</p>`;
+        }
+
+        updateCharts(data.chartData || {});
+
+    } catch (error) {
+        console.error('Error updating dashboard:', error);
+        errorEl.textContent = 'Unable to load data. Make sure the server is running and data is available.';
+        errorEl.style.display = 'block';
+
+        // Reset UI on error
+        document.querySelector('#metric-total-clients .big-number').textContent = 'N/D';
+        document.querySelector('#metric-active-clients .big-number').textContent = 'N/D';
+        document.querySelector('#metric-adherence .big-number').textContent = '--%';
+        document.querySelector('#metric-churn .big-number').textContent = '--%';
+        document.getElementById('risk-alerts-container').innerHTML = `<p class="no-alerts">Data not available.</p>`;
+        document.getElementById('inactive-clients-container').innerHTML = `<p class="no-alerts">Data not available.</p>`;
+        
+        const emptyChartData = {
+            riskDistribution: [],
+            adherenceTrend: { labels: [], data: [] }
+        };
+        updateCharts(emptyChartData);
+    }
+}
+        function updateCharts(chartData) {
+            if (typeof Chart === 'undefined') {
+                console.warn("Chart.js not loaded: dashboard charts will not be displayed.");
+                return;
+            }
+            const chartColors = {
+                low: 'rgba(75, 192, 192, 0.7)',
+                medium: 'rgba(255, 205, 86, 0.7)',
+                high: 'rgba(255, 99, 132, 0.7)',
+                primary: 'rgba(159, 122, 234, 0.8)'
+            };
+            
+            const riskCtx = document.getElementById('riskDistributionChart').getContext('2d');
+            if (charts.risk) charts.risk.destroy();
+            charts.risk = new Chart(riskCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Low', 'Medium', 'High'],
+                    datasets: [{
+                        label: 'Risk Distribution',
+                        data: chartData.riskDistribution || [],
+                        backgroundColor: [chartColors.low, chartColors.medium, chartColors.high],
+                        borderColor: '#2C2C32',
+                        borderWidth: 4
+                    }]
+                },
+                // The 'options' section is modified
+                options: {
+                    ...getCommonChartOptions(),
+                    cutout: '60%', // Slightly thinner for improved appearance
+                    // --- Key fix for doughnut chart ---
+                    plugins: {
+                        ...getCommonChartOptions().plugins, // Keep existing tooltips
+                        legend: {
+                            position: 'bottom', // Move legend below, giving more space to chart
+                            labels: { color: '#E0E0E0', font: { size: 14 } }
+                        }
+                    }
+                },
+                plugins: [noDataPlugin]
+            });
+
+            const adherenceCtx = document.getElementById('adherenceChart').getContext('2d');
+            if (charts.adherence) charts.adherence.destroy();
+            charts.adherence = new Chart(adherenceCtx, {
+                type: 'line',
+                data: {
+                    labels: chartData.adherenceTrend ? chartData.adherenceTrend.labels : [],
+                    datasets: [{
+                        label: 'Average Adherence',
+                        data: chartData.adherenceTrend ? chartData.adherenceTrend.data.map(d => d * 100) : [],
+                        borderColor: chartColors.primary,
+                        backgroundColor: 'rgba(159, 122, 234, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    ...getCommonChartOptions(),
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { color: '#AAAAAA' }, grid: { color: '#444' } },
+                        x: { ticks: { color: '#AAAAAA' }, grid: { color: '#444' } }
+                    },
+                    plugins: { 
+                        ...getCommonChartOptions().plugins,
+                        legend: { display: false } 
+                    }
+                },
+                plugins: [noDataPlugin]
+            });
+        }
+        
+        function setupWebSocket() {
+            const socket = new WebSocket(`ws://${window.location.host}`);
+            socket.onopen = () => console.log('WebSocket (Dashboard): Connection established.');
+            socket.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'heartbeat') {
+                        socket.send(JSON.stringify({ type: 'heartbeat_ack' }));
+                    } else if (data.type === 'analytics_update') {
+                        console.log('Analytics update received, reloading dashboard...');
+                        updateDashboard();
+                    }
+                } catch(e) {}
+            };
+            socket.onclose = () => {
+                 document.body.innerHTML = `<div class="shutdown-overlay"><div><h1>Connection Lost</h1><p>The local server has been closed. This window can be closed.</p></div></div>`;
+            };
+            socket.onerror = (error) => console.error('WebSocket Error:', error);
+        }
+
+        updateDashboard();
+        setupWebSocket();
+
+        // Fullscreen toggle logic with persistence
+        const fsToggle = document.getElementById('fullscreen-toggle');
+        const updateFS = () => {
+            const isActive = !!document.fullscreenElement;
+            sessionStorage.setItem('fs_persistence', isActive);
+            if (fsToggle) fsToggle.textContent = isActive ? '🗗' : '⛶';
+        };
+
+        if (fsToggle) {
+            fsToggle.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(e => console.error(e));
+                } else {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                }
+            });
+        }
+
+        document.addEventListener('fullscreenchange', updateFS);
+
+        // Auto-reactivation on first interaction (bypasses browser policy)
+        document.body.addEventListener('click', () => {
+            if (sessionStorage.getItem('fs_persistence') === 'true' && !document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            }
+        }, { once: true });
+
+        // Theme check (No toggle, only check localStorage)
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+MÉTODO PADEL INTEGRAL — Manual de Metodología
+de Entrenamiento
+Elaborado por: Entrenador Nacional FEP, Nivel III
+Versión: 1.0 — Base de Conocimiento para Coach Digital
+
+
+
+
+1. Identidad del Método y Filosofía de Entrenamiento
+1.1 Nombre y Principios Fundamentales
+El presente sistema se denomina Método Padel Integral (MPI) y nace de más de una década
+de trabajo en pista con jugadores de todos los niveles, desde quienes dan su primer golpe
+hasta deportistas que compiten en circuitos nacionales como el QPadel o el circuito
+autonómico FEP. El MPI no es una colección de ejercicios: es una forma de entender el pádel
+como deporte complejo, donde el desarrollo técnico, táctico, físico y mental deben avanzar de
+manera simultánea y coherente.
+
+Los cinco principios que vertebran el método son:
+
+   Consistencia antes que potencia. El error no forzado es el mayor enemigo del jugador
+    amateur. Antes de construir golpes agresivos, el alumno debe ser capaz de mantener el
+    peloteo con control y variedad.
+   Lectura del juego como habilidad entrenable. La anticipación no es un don natural, sino
+    una competencia que se desarrolla con exposición sistemática a patrones y situaciones
+    reales de juego.
+   Individualización de la carga. No existe una semana tipo universal. Cada alumno tiene su
+    umbral de fatiga, su calendario de torneos y sus limitaciones funcionales. El entrenamiento
+    debe adaptarse, no el jugador al entrenamiento.
+   El cuerpo como herramienta técnica. No se puede disociar la técnica del movimiento. Un
+    golpe mal ejecutado casi siempre viene precedido de un mal desplazamiento o una
+    posición de espera incorrecta.
+   La mente se entrena en pista. La psicología del rendimiento no se trabaja solo con charlas
+    o reflexiones: se entrena bajo presión, con marcadores, con condicionantes de juego real.
+
+
+1.2 Estilo de Juego Promovido
+El MPI promueve un estilo de juego equilibrado con vocación ofensiva progresiva. Esto
+significa que el alumno aprende primero a defender con solidez y a gestionar el peloteo desde
+el fondo —especialmente tras el cristal y la pared lateral—, pero con el objetivo explícito de
+subir a la red en cuanto las condiciones del rally lo permitan. No creemos en el jugador que se
+queda permanentemente en el fondo como estrategia; creemos en quien sabe defender para
+atacar.
+
+El esquema táctico de referencia en juego de dobles es el "tres más uno": tres golpes de
+construcción (salida de fondo, globo o bola a los pies) seguidos de una bola ofensiva que
+permita acceder a la red. Este patrón es el eje en torno al cual se diseñan la mayoría de los
+ejercicios de situación.
+
+1.3 Perfiles de Jugadores
+El método trabaja con cuatro perfiles claramente diferenciados, cada uno con sus objetivos
+prioritarios:
+Iniciación (P250–P150): Jugadores con menos de dos años de práctica o sin formación
+técnica previa. El foco está en la mecánica básica de los golpes, el posicionamiento en pista y
+la comprensión del reglamento y las dinámicas de dobles. El volumen de entrenamiento
+técnico supera ampliamente al táctico.
+
+Intermedio (P150–P100): Jugadores con base técnica que empiezan a jugar partidos con
+regularidad. Se introduce la táctica de posicionamiento, el globo como arma defensiva, la volea
+de bloqueo y los primeros patrones ofensivos. La componente física cobra relevancia.
+
+Avanzado (P100–P30): Jugadores con experiencia competitiva que buscan optimizar su
+rendimiento. Se trabaja la toma de decisiones bajo presión, los golpes de alto impacto (víbora,
+bandeja agresiva, smash con salida), la gestión del partido y la preparación física específica.
+
+Competición (P30–P1 y circuitos nacionales): Deportistas con dedicación semiprofesional o
+profesional. El entrenamiento es periodizado, con control de la carga, trabajo de video análisis,
+preparación física individualizada y trabajo psicológico estructurado.
+
+
+
+
+2. Marco de Evaluación Inicial
+2.1 Evaluación Técnica
+La evaluación técnica inicial se realiza en dos sesiones de 90 minutos cada una. No se
+puntúan los golpes de forma aislada: se valora la cadena cinemática completa (posición de
+espera, desplazamiento, preparación, impacto y continuación) y la capacidad de ejecutar el
+golpe en condiciones de juego real, no solo en feed estático.
+
+Los golpes evaluados y sus indicadores clave son:
+
+Golpes de fondo: Derecha y revés planos y con cortado. Se valora la profundidad de la bola,
+el control del ritmo y la capacidad de dirigir. En el cristal: se evalúa si el jugador sabe leer el
+rebote y cuánto tiempo necesita para ejecutar tras la pared.
+
+Volea: Alta y baja, tanto de control como de ataque. Se analiza el punto de impacto, la
+posición del codo, el bloqueo de muñeca y el ángulo de apertura de la pala.
+
+Bandeja: Es uno de los golpes más representativos del pádel moderno. Se evalúa la entrada
+al golpe (rotación de hombros, codo alto), la zona de impacto y el efecto conseguido (plana,
+cortada, con dirección cruzada o paralela).
+
+Víbora: Solo se evalúa en jugadores de nivel intermedio-avanzado. Se valora la mecánica de
+efecto, la capacidad de repetirla con dirección y la integración del golpe en situaciones de
+juego.
+
+Smash: Se diferencia entre smash directo, por tres paredes y con salida. En iniciación solo se
+trabaja el smash directo. Se evalúa la elección de golpe según la situación (cuándo salir,
+cuándo no).
+
+
+2.2 Evaluación Física
+La batería física inicial incluye:
+
+   Velocidad de reacción: Test de luz o T-test modificado con cambios de dirección cortos
+    (distancias de 3–5 m). Se registra el tiempo medio en 6 repeticiones.
+   Resistencia aeróbica: Test de Course Navette o Yo-Yo Test nivel 1, según el perfil del
+    jugador. En jugadores amateur con historial médico desconocido, se usa cuestionario
+    PARQ antes de cualquier test de esfuerzo.
+   Potencia de miembro superior: Test de lanzamiento de pelota medicinal de 1 kg desde
+    posición estática. Complementado con dinamometría manual si se dispone del material.
+   Movilidad funcional: Evaluación básica de movilidad de hombro (rotación interna y
+    externa), cadera y tobillo, dado que estas tres articulaciones concentran la mayoría de
+    lesiones en pádel.
+
+
+2.3 Cuestionario de Ingreso
+Antes de la primera sesión práctica, todo alumno nuevo completa un cuestionario escrito o
+digital que recoge:
+
+   Historial deportivo: deportes practicados, años de experiencia en pádel, lesiones relevantes.
+    Objetivo principal: mejora técnica, competición, salud o simplemente disfrute.
+    Nivel estimado actual (autoevaluación en la escala FEP P100–P1 o equivalente WPT).
+    Disponibilidad semanal: número de sesiones de entrenamiento posibles y duración.
+    Materiales disponibles: tipo de pala actual, acceso a pistas cubiertas o al aire libre.
+    Pareja o compañeros habituales de juego, si los hay.
+
+
+
+
+3. Protocolos de Entrenamiento
+3.1 Estructura de la Semana Tipo por Fase
+El año de entrenamiento se organiza en cuatro fases: preparación general, preparación
+específica, competición y transición. La distribución semanal varía en función de la fase y
+del nivel del jugador.
+
+Para un jugador intermedio en fase de preparación específica con tres sesiones semanales
+disponibles:
+
+   Sesión 1 (técnica, 90 min): Calentamiento específico con movilidad articular y
+    coordinación (15 min) → Trabajo técnico con cesta de bolas sobre golpe objetivo (25 min)
+    → Situaciones de juego condicionadas 3x3 o 4x4 con restricciones (30 min) → Vuelta a la
+    calma y estiramientos (15 min).
+   Sesión 2 (táctica/situaciones, 90 min): Calentamiento dinámico (15 min) → Patrón táctico
+    en feed (15 min) → Juego de situación real con marcador (40 min) → Feedback grupal con
+    análisis de situaciones (10 min) → Cierre (10 min).
+   Sesión 3 (física + integración, 75 min): Calentamiento neuromuscular (15 min) → Trabajo
+    físico específico: sprints cortos, cambios de dirección, circuito de potencia tren superior (25
+    min) → Partido de práctica con objetivos tácticos asignados (30 min) → Estiramiento y
+    recuperación (5 min).
+
+Para un jugador de competición, se añaden sesiones de video análisis, trabajo de saque y
+golpe de inicio, y una sesión semanal dedicada exclusivamente al aspecto mental y a la
+revisión de datos de rendimiento.
+
+
+3.2 Ejercicios Específicos de Referencia
+Feed de pelotas: El entrenador alimenta bolas desde la red con control de velocidad,
+profundidad y efecto. Tipos de feed: directo a zona, feed con desplazamiento previo
+obligatorio, feed con restricción de golpe (solo volea alta, solo revés, etc.). El feed no es un
+calentamiento: es la herramienta más poderosa para el aprendizaje técnico.
+
+Situaciones de juego real: Se trabajan situaciones específicas de partido con marcador
+condicionado: "empezáis 30-40", "punto de ventaja en el tercer set", "el equipo A solo puede
+anotar con volea". Estas condiciones recrean la presión competitiva real.
+
+Patrones tácticos clave:
+
+    Patrón de "globo + subida": el equipo del fondo ejecuta un globo de calidad y sube a la red.
+    Se trabaja tanto la ejecución del globo como el sprint a red y la volea de cierre.
+   Patrón de "presión al cuerpo": bola a los pies del jugador de red contrario para forzar la
+    volea baja y generar la pelota de ataque.
+   Patrón de "juego en diagonal": intercambio largo de bolas cruzadas para controlar el ritmo,
+    seguido de cambio de dirección agresivo para romper la diagonal.
+
+
+3.3 Volumen e Intensidad por Nivel
+ Nivel           Sesiones/semana       Duración             Intensidad máxima recomendada
+                                       media
+
+ Iniciación      1–2                   60–75 min            Moderada (RPE 5–6)
+
+ Intermedio      2–3                   75–90 min            Moderada-alta (RPE 6–8)
+
+ Avanzado        3–4                   90–120 min           Alta (RPE 7–9)
+
+ Competición     4–6                   90–150 min           Variable, periodizada
+
+
+
+
+4. Nutrición e Higiene Deportiva
+4.1 Pautas Nutricionales
+El pádel es un deporte de esfuerzo intermitente de alta intensidad con duración variable. Un
+partido puede durar desde 45 minutos hasta más de dos horas, lo que implica demandas
+mixtas aeróbicas-anaeróbicas. La alimentación debe garantizar depósitos de glucógeno
+adecuados sin generar pesadez digestiva.
+
+Antes del entrenamiento o partido (2–3 horas antes): Comida de base con carbohidratos de
+absorción media-lenta (arroz, pasta, pan integral), proteína magra (pollo, pavo, huevo) y
+mínima grasa. Se recomienda evitar alimentos muy fibrosos que puedan generar molestias. Si
+el tiempo es inferior a 90 minutos, se puede tomar un snack ligero como un plátano con un
+puñado de frutos secos.
+
+Durante el partido (si supera 90 minutos): Consumo de carbohidratos de rápida absorción
+en los cambios de lado: gel energético, plátano, dátiles o barritas de composición simple. No
+se recomienda consumir alimentos sólidos complejos en pleno partido.
+
+Post-partido (dentro de los 30–60 minutos siguientes): Ventana anabólica. Priorizar la
+ingesta de proteína (20–30 g) y carbohidratos simples para iniciar la recuperación muscular y
+recargar el glucógeno. Opciones prácticas: batido de proteína con plátano, yogur griego con
+miel y fruta, sándwich de pavo.
+4.2 Hidratación
+  Antes: Llegar al partido o entrenamiento ya bien hidratado. 500 ml de agua en las 2 horas
+   previas.
+  Durante: 150–250 ml cada 15–20 minutos. En condiciones de calor o partido de alta
+   intensidad, incluir bebida isotónica para reponer sodio y potasio.
+  Después: Reponer al menos 1,5 veces el peso perdido en sudor. Una guía práctica:
+   pesarse antes y después del partido; por cada 500 g de diferencia, beber 750 ml de líquido
+   en las horas siguientes.
+
+
+4.3 Recuperación Post-Partido y Gestión de Agujetas
+Las agujetas (dolor muscular de aparición tardía, DOMS) son normales tras sesiones de alta
+intensidad o vuelta al entrenamiento después de un período de descanso. El protocolo de
+recuperación incluye:
+
+  Inmediato: Estiramientos suaves (no agresivos, no balísticos), ducha fría-caliente
+   alternando 30 segundos cada temperatura durante 5 minutos.
+  Primeras 24 h: Movilidad activa ligera, caminar, nadar o pedalear suavemente. Evitar el
+   reposo total excepto en casos de lesión.
+  Nutrición de recuperación: Asegurar ingesta proteica distribuida a lo largo del día (1,6–
+   2,0 g/kg de peso corporal en períodos de alta carga de entrenamiento).
+  Sueño: Mínimo 7–8 horas. El sueño es la herramienta de recuperación más potente
+   disponible, y es gratuita.
+
+
+
+
+5. Variables Clave a Extraer en las Conversaciones con
+elAlumno
+5.1 Variables por Sesión
+Tras cada sesión de entrenamiento o partido, el coach digital debe recoger sistemáticamente:
+
+    Golpe o aspecto principal trabajado: ¿Cuál fue el foco técnico o táctico de la sesión?
+    Dificultad percibida (escala 1–10): 1 = trivial, 10 = al límite. Sirve para calibrar la
+ intensidad real vs. la planificada.
+  Errores recurrentes observados o percibidos: El alumno describe libremente qué falló
+   con más frecuencia. Esta información es oro para el ajuste del siguiente ciclo.
+  Sensación física al terminar: ¿Cansado pero bien, agotado, lesión incipiente, contractura?
+
+
+5.2 Variables Semanales
+  Nivel de energía general (1–10): Indicador de fatiga acumulada. Si baja de 5 dos semanas
+   consecutivas, hay que revisar la carga.
+  Calidad del sueño (1–10): El sueño de mala calidad es el primer indicador de
+   sobreentrenamiento.
+  Número de partidos jugados fuera del entrenamiento: Para calcular la carga total real,
+   no solo la planificada.
+  Eventos de estrés laboral, familiar o emocional relevante: No se trata de terapia, sino
+   de contexto. Un jugador bajo estrés severo no puede rendir ni asimilar entrenamiento de la
+   misma forma.
+5.3 Variables Mensuales
+   Resultados en torneos o partidos de ranking: No solo el resultado final, sino el análisis
+    del rendimiento en cada partido.
+    Evolución en el ranking FEP o WPT Amateur: Comparativa mes a mes.
+    Motivación (1–10): La curva de motivación predice el abandono o la sobreexigencia antes
+ de que ocurran.
+   Revisión de objetivos: ¿Siguen siendo los mismos que al inicio? ¿Han cambiado las
+    circunstancias?
+
+
+5.4 Señales de Sobrecarga y Protocolo de Respuesta
+Las señales de alerta que el coach digital debe detectar y escalar inmediatamente son:
+
+    Energía ≤4 durante dos semanas consecutivas.
+    Sueño ≤4 durante más de cinco días seguidos.
+    Dolor articular nuevo o persistente (especialmente en codo, hombro o rodilla).
+    Motivación ≤3 acompañada de verbalización de querer "dejarlo todo".
+    Pérdida de rendimiento técnico sin causa aparente durante más de dos semanas.
+
+Protocolo de respuesta: Reducción inmediata de la carga de entrenamiento en un 30–50%,
+sesión de conversación orientada a identificar la causa (física, mental o externa), y en caso de
+síntoma físico persistente, derivación explícita a fisioterapeuta o médico deportivo. El coach
+digital no diagnostica lesiones ni sustituye al profesional de salud.
+
+
+
+
+6. Comunicación y Psicología del Rendimiento
+6.1 Estilo Comunicativo
+El MPI utiliza un estilo comunicativo adaptativo según el perfil y el momento del alumno,
+basado en tres registros:
+
+   Motivacional: Se usa cuando el alumno atraviesa una racha negativa, pierde la confianza o
+    necesita un empujón para mantenerse en el proceso. El lenguaje es cercano, empático y
+    orientado al proceso, no al resultado.
+   Técnico-analítico: Se activa cuando el alumno está en buen estado emocional y físico y
+    puede asimilar información detallada sobre la mecánica de sus golpes o la táctica de
+    partido. El lenguaje es preciso, usa terminología técnica y se apoya en datos y
+    observaciones concretas.
+   Directivo: Breve, claro y sin ambigüedades. Se usa en pista durante la ejecución, para dar
+    instrucciones en tiempo real sin interrumpir el flujo del entrenamiento.
+
+El coach digital debe identificar el registro adecuado en función del contexto de la
+conversación. Si el alumno llega a la sesión describiendo una semana difícil o una derrota
+frustrante, no es el momento de desplegar un análisis técnico exhaustivo.
+
+
+6.2 Gestión de Rachas Negativas y Frustración
+Las rachas negativas son parte inherente del proceso de aprendizaje y de la competición. El
+coach no las niega ni las minimiza, pero tampoco las amplifica. El enfoque metodológico ante
+una racha negativa es el siguiente:
+Primero, validar: "Es normal que te cueste este golpe en este momento, estás en una fase de
+reestructuración técnica. Antes lo hacías de memoria, ahora estás pensando en cada
+movimiento, y eso genera errores temporales."
+
+Segundo, identificar la causa: ¿Es técnica (el golpe se ha roto durante el proceso de
+cambio), táctica (el jugador no sabe cuándo usar ese golpe), física (fatiga o falta de
+preparación) o mental (presión de resultado, miedo al error)?
+
+Tercero, ajustar el plan: Si la causa es técnica, volver a trabajar el golpe sin presión de
+partido durante una o dos sesiones. Si es táctica, simplificar el patrón. Si es física, reducir la
+carga. Si es mental, introducir ejercicios de focalización en proceso (rutinas entre punto,
+palabras clave, respiración).
+
+Los errores repetidos nunca se abordan con crítica sino con curiosidad: "¿Qué notas tú cuando
+fallas ese golpe? ¿En qué momento de la cadena crees que se rompe algo?" El alumno que
+entiende su error tiene muchas más probabilidades de corregirlo que el que simplemente
+recibe la instrucción de "hazlo diferente".
+
+
+6.3 Estructura del Feedback Post-Partido
+El análisis post-partido tiene una estructura en cuatro bloques que el coach digital aplicará de
+forma sistemática:
+
+Bloque 1 — Contexto emocional: Antes de analizar nada, preguntar por el estado emocional
+tras el partido. "¿Cómo te has sentido en pista hoy?" Las respuestas aquí condicionan el tono
+del resto del análisis.
+
+Bloque 2 — Lo que funcionó: Siempre se empieza por lo positivo, pero con especificidad. No
+vale "jugaste bien en la red"; hay que identificar: "Tu volea cruzada en el segundo set estuvo
+muy sólida, y subiste a red en los momentos correctos."
+
+Bloque 3 — Área de mejora principal (una sola): El error más grave del feedback
+postpartido es querer corregir todo a la vez. Se elige el factor más determinante en el resultado
+o en el rendimiento y se trabaja solo ese. "Lo que más nos costó hoy fue la salida del fondo
+tras el cristal. Dejamos muchas bolas cortas que ellos aprovecharon para atacar."
+
+Bloque 4 — Acción concreta para la próxima sesión: El análisis sin acción es ruido. El
+feedback siempre termina con una propuesta práctica específica: "La próxima sesión vamos a
+trabajar específicamente la salida de fondo tras el cristal con feed desde la red. Quiero que
+llegues habiéndolo visualizado."
+
+Este formato asegura que el alumno salga del análisis con una imagen positiva de su juego,
+una comprensión clara del área a mejorar y, sobre todo, con un paso concreto y accionable por
+delante. La motivación se mantiene cuando el jugador siente que tiene el control del proceso.
+
+
+
+
+AVISO LEGAL: Este documento es un ejemplo ilustrativo generado por inteligencia artificial, producido exclusivamente con fines demostrativos y de prueba del sistema MetaOpenCoach. No constituye una guía de entrenamiento certificada ni sustituye una evaluación médico-deportiva previa ni el criterio de un profesional cualificado. Los autores del proyecto MetaOpenCoach no asumen ninguna responsabilidad por daños directos, indirectos o consecuentes derivados del uso, mal uso o interpretación errónea de este documento o de aplicaciones generadas a partir de él, incluyendo lesiones físicas, deterioro de la salud o perjuicios a terceros. El uso implica la plena aceptación de estas condiciones. MetaOpenCoach | Ejemplo Generado por IA | Versión 1.0 — 2026
+
